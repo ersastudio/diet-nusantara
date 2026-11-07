@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diet Nusantara · 28 Hari</title>
+<meta name="theme-color" content="#2f7d4f">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Diet Nusantara">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f7f3ea; --surface:#fffdf8; --surface-2:#f1ece1; --line:#e6dfd1;
+  --text:#1d2420; --text-2:#525c56; --muted:#7c857f;
+  --primary:#2f7d4f; --primary-ink:#ffffff; --primary-soft:#dcefe2;
+  --accent:#b9800f; --accent-soft:#fbefd2;
+  --danger:#b83f2a; --danger-soft:#f8e1dc;
+  --good:#1f7a33;
+  --water:#2a78d6; --water-soft:#dbe9fb;
+  --series-1:#2a78d6; --grid:#ece6da; --band:#2f7d4f;
+  --shadow:0 1px 2px rgba(30,40,30,.05),0 6px 18px rgba(30,40,30,.06);
+  --radius:18px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    color-scheme:dark;
+    --bg:#111513; --surface:#1a201d; --surface-2:#232a26; --line:#2f3732;
+    --text:#edeae3; --text-2:#c0c6c1; --muted:#8f9892;
+    --primary:#4caf73; --primary-ink:#0b1710; --primary-soft:#1f3328;
+    --accent:#f0b43c; --accent-soft:#3a3020;
+    --danger:#e66767; --danger-soft:#3b2222;
+    --good:#5cc27a;
+    --water:#3987e5; --water-soft:#1c2c42;
+    --series-1:#3987e5; --grid:#2a312d; --band:#4caf73;
+    --shadow:none;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit;color:inherit}
+h1,h2,h3,h4{margin:0;line-height:1.25}
+h2{font-size:17px;font-weight:800}
+h3{font-size:15px;font-weight:700}
+p{margin:6px 0}
+.app{max-width:560px;margin:0 auto;min-height:100vh}
+header.top{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:var(--bg);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{width:38px;height:38px;border-radius:12px;background:var(--primary);display:grid;place-items:center;font-size:20px;flex:none}
+.brand h1{font-size:17px;font-weight:800;letter-spacing:-.01em}
+.brand .sub{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top-actions{display:flex;gap:8px;flex:none}
+.icon-btn{width:38px;height:38px;border-radius:12px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;cursor:pointer;font-size:18px;line-height:1}
+.lang-btn{height:38px;padding:0 12px;border-radius:12px;border:1px solid var(--line);background:var(--surface);font-weight:800;font-size:13px;cursor:pointer}
+main{padding:14px 14px 104px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin:0 0 12px;box-shadow:var(--shadow)}
+.card-h{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px}
+.card-h h2,.card-h h3{flex:1}
+.page-h{font-size:22px;margin:4px 4px 12px}
+.muted{color:var(--muted)}
+.sm{font-size:13px}
+.note{font-size:13px;color:var(--text-2);background:var(--accent-soft);border-radius:12px;padding:10px 12px;margin:12px 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:var(--primary);color:var(--primary-ink);border:0;border-radius:12px;padding:12px 16px;font-weight:700;cursor:pointer;text-decoration:none}
+.btn.block{width:100%;margin-top:10px}
+.btn.sm{padding:9px 12px;font-size:13px;white-space:nowrap}
+.btn.danger{background:var(--danger-soft);color:var(--danger)}
+.btn.ghost{background:var(--surface-2);color:var(--text);border:1px solid var(--line)}
+.btn-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.btn-row .btn{flex:1 1 140px}
+textarea.bk{width:100%;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--text);font:12px/1.4 ui-monospace,Menlo,monospace;resize:vertical}
+.link{background:none;border:0;padding:4px 2px;color:var(--primary);font-weight:700;cursor:pointer;font-size:13px}
+.link.danger{color:var(--danger)}
+.pill{display:inline-block;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--primary-soft);color:var(--primary);border:0}
+.pill.link{cursor:pointer}
+.badge-s{font-size:12px;font-weight:700;color:var(--accent);margin-left:4px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* hero */
+.hero-nav{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.hero-date{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;font-weight:700}
+.hero-date > span:first-child{text-transform:capitalize}
+.hero-main{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px}
+.big{font-size:30px;font-weight:800;letter-spacing:-.02em}
+.big small{font-size:16px;color:var(--muted);font-weight:700}
+.wk{font-weight:700;color:var(--primary);margin-top:2px}
+.streak{margin-top:6px;font-size:13px;font-weight:700}
+.ring{position:relative;width:96px;height:96px;flex:none}
+.ring svg{width:96px;height:96px;transform:rotate(-90deg)}
+.ring-bg{fill:none;stroke:var(--primary-soft);stroke-width:8}
+.ring-fg{fill:none;stroke:var(--primary);stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset .4s}
+.ring-t{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1}
+.ring-t b{font-size:20px}
+.ring-t span{font-size:11px;color:var(--muted)}
+
+/* banner */
+.banner{display:flex;align-items:center;gap:12px;background:var(--accent-soft);border-color:transparent}
+.banner p{font-size:13px;color:var(--text-2);margin:2px 0 0}
+.flexnote{font-size:13px;background:var(--accent-soft);border-radius:10px;padding:8px 10px}
+
+/* checklists */
+.check-row{position:relative;display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--line);cursor:pointer}
+.check-row.first,.card-h + .check-row,.flexnote + .check-row,h2 + .check-row{border-top:0}
+.check-row.compact{padding:9px 0}
+.check-row input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.box{flex:none;width:24px;height:24px;border-radius:8px;border:2px solid var(--line);background:var(--surface);display:grid;place-items:center;margin-top:1px;transition:background .15s,border-color .15s}
+.check-row input:checked + .box{background:var(--primary);border-color:var(--primary)}
+.check-row input:checked + .box::after{content:"";width:10px;height:5px;border:2.5px solid var(--primary-ink);border-top:0;border-right:0;transform:translateY(-2px) rotate(-45deg)}
+.check-row input:focus-visible + .box{outline:2px solid var(--accent);outline-offset:2px}
+.ci{display:flex;flex-direction:column;gap:2px;min-width:0}
+.slot{font-size:12px;font-weight:800;color:var(--text-2);text-transform:uppercase;letter-spacing:.03em}
+.slot em{font-style:normal;font-weight:600;color:var(--muted);text-transform:none;letter-spacing:0;margin-left:4px}
+.txt{font-weight:500}
+.check-row.done .txt{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--muted)}
+.check-row.nostrike.done .txt{color:var(--primary);text-decoration:none;font-weight:700}
+
+/* exercise */
+ul.ex{margin:8px 0;padding-left:20px}
+ul.ex li{margin:3px 0}
+.ex-icon{font-size:22px}
+
+/* water */
+.water{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;margin:8px 0 4px}
+.glass{aspect-ratio:3/4;border-radius:5px 5px 10px 10px;border:2px solid var(--water);background:transparent;cursor:pointer;padding:0;position:relative;overflow:hidden}
+.glass.on{background:var(--water)}
+.glass:not(.on):hover{background:var(--water-soft)}
+
+/* steps & meter */
+.steps-in{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--surface);font-size:16px;font-weight:700}
+.meter{height:8px;border-radius:99px;background:var(--primary-soft);overflow:hidden;margin:10px 0 6px}
+.meter span{display:block;height:100%;background:var(--primary);border-radius:99px;transition:width .4s}
+.meter.lg{height:10px;margin-top:14px}
+
+/* chips */
+.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 10px;scrollbar-width:none}
+.chip{flex:none;border:1px solid var(--line);border-radius:999px;padding:8px 14px;background:var(--surface);font-weight:700;font-size:13px;color:var(--text-2);cursor:pointer}
+.chip.on{background:var(--primary);color:var(--primary-ink);border-color:var(--primary)}
+.wk-title{font-weight:800;color:var(--primary);margin:2px 4px 10px}
+
+/* menu */
+.mday.is-today{border-color:var(--primary);box-shadow:0 0 0 1px var(--primary)}
+dl.mlist{margin:6px 0 0;display:grid;grid-template-columns:auto 1fr;gap:6px 12px}
+dl.mlist dt{font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;padding-top:2px}
+dl.mlist dd{margin:0}
+
+/* weight */
+.w-hero{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.hero-num{font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.hero-num small{font-size:18px;color:var(--muted)}
+.bmi{text-align:right;display:flex;flex-direction:column;align-items:flex-end}
+.bmi b{font-size:20px}
+.bmi span{font-size:12px;font-weight:700;color:var(--text-2)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.stats div{background:var(--surface-2);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:2px}
+.stats span{font-size:12px;color:var(--muted);font-weight:600}
+.stats b{font-size:16px}
+.form-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:8px}
+.field{display:flex;flex-direction:column;gap:5px;font-size:13px;color:var(--text-2);font-weight:700;margin-top:10px}
+.field i{font-weight:500;font-style:normal;color:var(--muted)}
+.field input,.field select{width:100%;padding:11px 12px;border-radius:12px;border:1px solid var(--line);background:var(--surface);font-size:15px;font-weight:600;color:var(--text)}
+.err{color:var(--danger);font-size:13px;font-weight:600}
+table.hist{width:100%;border-collapse:collapse;margin-top:6px;font-size:14px}
+table.hist th{text-align:left;font-size:12px;color:var(--muted);font-weight:700;padding:6px 4px;border-bottom:1px solid var(--line)}
+table.hist td{padding:9px 4px;border-bottom:1px solid var(--line)}
+table.hist tr:last-child td{border-bottom:0}
+td.down{color:var(--good);font-weight:700}
+td.up{color:var(--danger);font-weight:700}
+
+/* chart */
+.chart-wrap{position:relative;margin-top:8px}
+.chart-wrap svg{width:100%;height:auto;display:block;overflow:visible}
+.grid{stroke:var(--grid);stroke-width:1}
+.ax{fill:var(--muted);font-size:10.5px;font-family:inherit}
+.band{fill:var(--band);opacity:.12}
+.tline{stroke:var(--text-2);stroke-width:1}
+.tlabel{fill:var(--text-2);font-size:10.5px;font-weight:700;font-family:inherit}
+.sline{fill:none;stroke:var(--series-1);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.dot{fill:var(--series-1);stroke:var(--surface);stroke-width:2}
+.xh{stroke:var(--muted);stroke-width:1;pointer-events:none}
+.hdot{fill:var(--series-1);stroke:var(--surface);stroke-width:2;pointer-events:none}
+.hit{fill:transparent;cursor:crosshair;touch-action:pan-y}
+.tt{position:absolute;pointer-events:none;background:var(--text);color:var(--bg);font-size:12px;line-height:1.3;padding:6px 9px;border-radius:9px;white-space:nowrap;transform:translate(-50%,calc(-100% - 10px));opacity:0;transition:opacity .1s}
+.keys{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font-size:12px;color:var(--text-2)}
+.keys span{display:inline-flex;align-items:center;gap:6px}
+.k-line{width:16px;height:2px;background:var(--series-1);border-radius:2px}
+.k-band{width:14px;height:10px;background:var(--band);opacity:.25;border-radius:3px}
+.k-target{width:16px;height:0;border-top:1px solid var(--text-2)}
+
+/* recipes & tips */
+details.recipe{padding:0}
+details.recipe summary{list-style:none;display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer}
+details.recipe summary::-webkit-details-marker{display:none}
+details.recipe summary::after{content:"›";margin-left:auto;font-size:22px;color:var(--muted);transition:transform .2s}
+details.recipe[open] summary::after{transform:rotate(90deg)}
+.r-emoji{width:42px;height:42px;border-radius:12px;background:var(--surface-2);display:grid;place-items:center;font-size:22px;flex:none}
+details.recipe summary span:not(.r-emoji){display:flex;flex-direction:column}
+details.recipe summary small{color:var(--muted);font-size:12px;font-weight:500}
+details.recipe .body{padding:0 16px 14px}
+details.recipe h4{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:10px 0 4px}
+details.recipe ul,details.recipe ol,.tips ul{margin:0;padding-left:20px}
+details.recipe li,.tips li{margin:4px 0}
+.tips h2{margin-bottom:8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.two h3{font-size:13px;margin-bottom:4px}
+.row-between{display:flex;align-items:center;justify-content:space-between;margin:0 4px 8px}
+
+/* nav */
+nav.tabs{position:fixed;bottom:0;left:0;right:0;z-index:6;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+nav.tabs .inner{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
+nav.tabs a{display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 0 11px;text-decoration:none;color:var(--muted);font-size:11px;font-weight:700}
+nav.tabs a .ic{font-size:21px;line-height:1;filter:grayscale(1);opacity:.65}
+nav.tabs a.on{color:var(--primary)}
+nav.tabs a.on .ic{filter:none;opacity:1}
+
+/* sheet */
+.backdrop{position:fixed;inset:0;z-index:10;background:rgba(10,14,12,.45);display:flex;align-items:flex-end;justify-content:center}
+.backdrop[hidden]{display:none}
+.sheet{width:100%;max-width:560px;max-height:88vh;overflow:auto;background:var(--surface);border-radius:22px 22px 0 0;padding:18px 18px calc(22px + env(safe-area-inset-bottom))}
+.sheet-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.sheet h3{margin-top:18px}
+.sync-line{font-weight:700}
+
+.toast{position:fixed;left:50%;bottom:88px;transform:translateX(-50%) translateY(10px);background:var(--text);color:var(--bg);padding:10px 16px;border-radius:12px;font-weight:700;font-size:14px;opacity:0;pointer-events:none;transition:.2s;z-index:20}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.welcome{text-align:center;padding:24px 18px}
+.welcome .emoji{font-size:44px}
+.welcome .field{text-align:left}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">🍃</div>
+      <div style="min-width:0"><h1>Diet Nusantara</h1><div class="sub" id="syncBadge"></div></div>
+    </div>
+    <div class="top-actions">
+      <button class="lang-btn" id="langBtn" data-act="lang"></button>
+      <button class="icon-btn" id="settingsBtn" data-act="settings">⚙️</button>
+    </div>
+  </header>
+  <main id="view" aria-live="polite"></main>
+</div>
+<nav class="tabs"><div class="inner" id="tabs"></div></nav>
+<div class="backdrop" id="sheet" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle"></div></div>
+<div class="toast" id="toast" role="status"></div>
+<noscript><p style="padding:20px">JavaScript diperlukan / JavaScript gerekli.</p></noscript>
+
+<script>
+(function(){
+'use strict';
+
+/* ================= DATA ================= */
+const SN={
+  pepaya:["1 mangkuk pepaya","1 kase papaya"],
+  kedelai:["1 gelas susu kedelai tawar","1 bardak şekersiz soya sütü"],
+  jambu:["1 jambu biji","1 guava (jambu biji)"],
+  edamame:["1 genggam edamame","1 avuç edamame"],
+  semangka:["1 mangkuk semangka","1 kase karpuz"],
+  telur:["1 telur rebus","1 haşlanmış yumurta"],
+  salak:["2 buah salak","2 salak"],
+  kacang:["½ genggam kacang rebus","Yarım avuç haşlanmış yer fıstığı"],
+  nanas:["1 mangkuk nanas","1 kase ananas"],
+  yogurt:["1 cup yogurt plain","1 kase sade yoğurt"],
+  pisang:["1 pisang kecil","1 küçük muz"],
+  jeruk:["2 buah jeruk","2 mandalina (jeruk)"],
+  mangga:["½ buah mangga","Yarım mango"]
+};
+
+// Each day: [sarapan, makan siang, makan malam, camilan1, camilan2] — index 0 = Senin
+const WEEKS=[
+ {t:["Pekan 1 · Adaptasi","1. Hafta · Uyum"], d:[
+  [["Bubur ayam (tanpa kerupuk & cakwe) + 1 telur rebus","Bubur ayam (kerupuk ve cakwe yok) + 1 haşlanmış yumurta"],["½ nasi merah + ayam bakar tanpa kulit + sayur asem + sambal","½ kırmızı pirinç + derisiz ayam bakar + sayur asem + sambal"],["Pepes ikan kemangi + tumis kangkung + ¼ nasi","Pepes ikan kemangi + tumis kangkung + ¼ pirinç"],"pepaya","kedelai"],
+  [["Ubi rebus 1 buah sedang + 2 telur rebus","1 orta haşlanmış tatlı patates (ubi) + 2 haşlanmış yumurta"],["Gado-gado (½ bumbu, tanpa lontong & kerupuk)","Gado-gado (sosun yarısı, lontong ve kerupuk yok)"],["Sop ayam bening + tempe bakar","Berrak tavuk çorbası (sop ayam) + tempe bakar"],"jambu","edamame"],
+  [["Telur dadar sayur + ½ nasi merah","Sebzeli omlet (telur dadar) + ½ kırmızı pirinç"],["Soto ayam bening (tanpa koya & kerupuk) + ½ nasi","Berrak soto ayam (koya ve kerupuk yok) + ½ pirinç"],["Ikan bakar + sambal dabu-dabu + lalapan","Ikan bakar + sambal dabu-dabu + lalapan (çiğ sebze)"],"semangka","telur"],
+  [["Bubur kacang hijau tanpa santan + 1 telur rebus","Santansız bubur kacang hijau + 1 haşlanmış yumurta"],["Nasi pecel (½ nasi, 2 sdm bumbu) + tempe bakar","Nasi pecel (½ pirinç, 2 yk sos) + tempe bakar"],["Pepes tahu + capcay kuah","Pepes tahu + capcay kuah"],"salak","kacang"],
+  [["Nasi tim ayam (mangkuk kecil)","Nasi tim ayam (küçük kase)"],["Sate ayam 8–10 tusuk (2 sdm bumbu) + 4–5 iris lontong + timun","Sate ayam 8–10 şiş (2 yk sos) + 4–5 dilim lontong + salatalık"],["Ikan kukus jahe + sayur bening bayam + ¼ nasi","Zencefilli buğulama balık + sayur bening bayam + ¼ pirinç"],"nanas","yogurt"],
+  [["Jagung rebus + 2 telur rebus","Haşlanmış mısır + 2 haşlanmış yumurta"],["Nasi campur warteg: ½ nasi + 1 lauk bakar/rebus + 2 sayur tanpa santan","Warteg usulü nasi campur: ½ pirinç + 1 ızgara/haşlama protein + 2 santansız sebze"],["Karedok + 2 tahu kukus + 1 telur rebus","Karedok + 2 buğulama tahu + 1 haşlanmış yumurta"],"pisang","kedelai"],
+  [["Ubi rebus + 2 telur rebus","Haşlanmış ubi + 2 haşlanmış yumurta"],["Fleksibel: rendang 2 potong + ½ nasi + daun singkong rebus","Esnek: 2 parça rendang + ½ pirinç + haşlanmış manyok yaprağı"],["Ikan kuah kuning + lalapan","Ikan kuah kuning (zerdeçallı balık çorbası) + lalapan"],"pepaya","edamame"]
+ ]},
+ {t:["Pekan 2 · Rasa Jawa & Sunda","2. Hafta · Java & Sunda lezzetleri"], d:[
+  [["½ porsi nasi jagung + urap sayur + 1 telur rebus","½ porsiyon nasi jagung + urap sayur + 1 haşlanmış yumurta"],["Rawon daging tanpa lemak + ½ nasi + tauge (tanpa kerupuk)","Yağsız etli rawon + ½ pirinç + tauge (kerupuk yok)"],["Tumis buncis + ayam suwir + ¼ nasi","Tumis buncis + didiklenmiş tavuk + ¼ pirinç"],"jeruk","telur"],
+  [["Bubur ayam + 1 telur rebus","Bubur ayam + 1 haşlanmış yumurta"],["Lotek + tempe bakar","Lotek + tempe bakar"],["Pepes ayam + sayur bening oyong","Pepes ayam + sayur bening oyong"],"jambu","kedelai"],
+  [["Tahu & tempe kukus + ½ nasi merah + sambal tomat","Buğulama tahu & tempe + ½ kırmızı pirinç + domatesli sambal"],["Asem-asem daging + ½ nasi","Asem-asem daging (ekşili et çorbası) + ½ pirinç"],["Ikan bakar + tumis tauge","Ikan bakar + tumis tauge"],"semangka","edamame"],
+  [["Telur dadar sayur + ½ nasi merah","Sebzeli omlet + ½ kırmızı pirinç"],["Bakso kuah 5–6 butir + sawi (tanpa mie & gorengan)","Bakso kuah 5–6 adet + sawi (erişte ve gorengan yok)"],["Garang asem ayam tanpa santan + ¼ nasi","Santansız garang asem ayam + ¼ pirinç"],"salak","yogurt"],
+  [["Kentang rebus + 2 telur rebus","Haşlanmış patates + 2 haşlanmış yumurta"],["½ nasi + ayam bakar bumbu kuning + sayur asem + lalapan","½ pirinç + ayam bakar bumbu kuning + sayur asem + lalapan"],["3 tahu bakso kukus + tumis sawi","3 buğulama tahu bakso + tumis sawi"],"pepaya","kacang"],
+  [["Bubur kacang hijau tanpa santan + 1 telur rebus","Santansız bubur kacang hijau + 1 haşlanmış yumurta"],["Gado-gado (½ bumbu)","Gado-gado (sosun yarısı)"],["Pindang bandeng + ¼ nasi + lalapan","Pindang bandeng + ¼ pirinç + lalapan"],"nanas","telur"],
+  [["Nasi tim ayam","Nasi tim ayam"],["Fleksibel: opor ayam 1 potong tanpa kulit (kuah sedikit) + ½ ketupat + sayur","Esnek: 1 parça derisiz opor ayam (az sos) + ½ ketupat + sebze"],["Sop ikan bening + lalapan","Berrak balık çorbası + lalapan"],"pisang","kedelai"]
+ ]},
+ {t:["Pekan 3 · Indonesia Timur, Bali & Lombok","3. Hafta · Doğu Endonezya, Bali & Lombok"], d:[
+  [["Tinutuan (bubur Manado) + 1 telur rebus","Tinutuan (Manado sebze lapası) + 1 haşlanmış yumurta"],["Ayam taliwang bakar + plecing kangkung + ½ nasi","Ayam taliwang bakar + plecing kangkung + ½ pirinç"],["Ikan kuah kuning + ¼ nasi + lalapan","Ikan kuah kuning + ¼ pirinç + lalapan"],"pepaya","edamame"],
+  [["Ubi ungu kukus + 2 telur rebus","Buğulama mor tatlı patates + 2 haşlanmış yumurta"],["Sate lilit ikan 4–5 tusuk + urap + ½ nasi","Sate lilit ikan 4–5 şiş + urap + ½ pirinç"],["Ayam woku tanpa santan + sayur bening bayam","Santansız ayam woku + sayur bening bayam"],"jambu","kedelai"],
+  [["Telur dadar sayur + ½ nasi merah","Sebzeli omlet + ½ kırmızı pirinç"],["Ikan bakar rica-rica + tumis buncis + ½ nasi","Ikan bakar rica-rica + tumis buncis + ½ pirinç"],["Sop ayam bening + tempe bakar","Berrak tavuk çorbası + tempe bakar"],"semangka","telur"],
+  [["Tinutuan + 2 tahu kukus","Tinutuan + 2 buğulama tahu"],["Ayam betutu 1 potong tanpa kulit + plecing kangkung + ½ nasi","1 parça derisiz ayam betutu + plecing kangkung + ½ pirinç"],["Pepes ikan + sambal matah + lalapan","Pepes ikan + sambal matah + lalapan"],"salak","kacang"],
+  [["Jagung rebus + 2 telur rebus","Haşlanmış mısır + 2 haşlanmış yumurta"],["Ikan bakar Jimbaran + sambal matah + ½ nasi + kangkung rebus","Ikan bakar Jimbaran + sambal matah + ½ pirinç + haşlanmış kangkung"],["Tahu kukus isi ayam + capcay kuah","Tavuk dolgulu buğulama tahu + capcay kuah"],"mangga","yogurt"],
+  [["Bubur ayam + 1 telur rebus","Bubur ayam + 1 haşlanmış yumurta"],["Udang bakar + sambal dabu-dabu + ½ nasi + lalapan","Udang bakar (ızgara karides) + sambal dabu-dabu + ½ pirinç + lalapan"],["Karedok + tempe kukus + 1 telur rebus","Karedok + buğulama tempe + 1 haşlanmış yumurta"],"nanas","edamame"],
+  [["Ubi rebus + 2 telur rebus","Haşlanmış ubi + 2 haşlanmış yumurta"],["Fleksibel: nasi goreng 1 porsi (sedikit minyak, banyak sayur, telur ceplok air, tanpa kerupuk)","Esnek: 1 porsiyon nasi goreng (az yağ, bol sebze, poşe yumurta, kerupuk yok)"],["Sop ikan bening + lalapan","Berrak balık çorbası + lalapan"],"pepaya","kedelai"]
+ ]},
+ {t:["Pekan 4 · Favorit & Meal Prep","4. Hafta · Favoriler & Meal Prep"], d:[
+  [["Bubur ayam + 1 telur rebus","Bubur ayam + 1 haşlanmış yumurta"],["½ nasi merah + pepes ayam + sayur asem + lalapan","½ kırmızı pirinç + pepes ayam + sayur asem + lalapan"],["Ikan kukus + tumis sawi","Buğulama balık + tumis sawi"],"jambu","kedelai"],
+  [["Telur dadar sayur + ½ nasi merah","Sebzeli omlet + ½ kırmızı pirinç"],["Soto ayam bening + ½ nasi","Berrak soto ayam + ½ pirinç"],["Tahu-tempe bacem panggang (gula sedikit) + sayur bening bayam","Fırında tahu-tempe bacem (az şekerli) + sayur bening bayam"],"semangka","edamame"],
+  [["Ubi rebus + 2 telur rebus","Haşlanmış ubi + 2 haşlanmış yumurta"],["Gado-gado (½ bumbu)","Gado-gado (sosun yarısı)"],["Ayam rica-rica (tidak digoreng) + tumis buncis + ¼ nasi","Ayam rica-rica (kızartmasız) + tumis buncis + ¼ pirinç"],"pepaya","telur"],
+  [["Tinutuan + 1 telur rebus","Tinutuan + 1 haşlanmış yumurta"],["Bakso kuah tanpa mie + sawi + tahu kukus","Eriştesiz bakso kuah + sawi + buğulama tahu"],["Pindang ikan + ¼ nasi + lalapan","Pindang ikan + ¼ pirinç + lalapan"],"salak","yogurt"],
+  [["Nasi tim ayam","Nasi tim ayam"],["Sate ayam 8–10 tusuk + 4–5 iris lontong + timun","Sate ayam 8–10 şiş + 4–5 dilim lontong + salatalık"],["Sop ayam bening + tempe bakar","Berrak tavuk çorbası + tempe bakar"],"nanas","kacang"],
+  [["Jagung rebus + 2 telur rebus","Haşlanmış mısır + 2 haşlanmış yumurta"],["Ikan bakar + plecing kangkung + ½ nasi","Ikan bakar + plecing kangkung + ½ pirinç"],["Pepes tahu jamur + capcay kuah","Mantarlı pepes tahu + capcay kuah"],"pisang","kedelai"],
+  [["Bubur kacang hijau tanpa santan + 1 telur rebus","Santansız bubur kacang hijau + 1 haşlanmış yumurta"],["Fleksibel: nasi Padang (nasi sedikit, kuah dipisah) + rendang/ayam bakar + daun singkong + sambal ijo","Esnek: nasi Padang (az pirinç, sos ayrı) + rendang/ayam bakar + manyok yaprağı + sambal ijo"],["Ikan kuah kuning + lalapan","Ikan kuah kuning + lalapan"],"pepaya","edamame"]
+ ]}
+];
+
+const RECIPES=[
+ {e:"🐟",t:["Pepes Ikan Kemangi","Pepes Ikan Kemangi (muz yaprağında balık)"],m:["2 porsi · ±200 kkal/porsi · tanpa minyak","2 porsiyon · ~200 kcal/porsiyon · yağsız"],
+  i:[["250 g ikan (nila / kembung / tongkol)","250 g balık (tilapia / uskumru / ton)"],["1 ikat kemangi","1 demet kemangi (limon fesleğeni)"],["2 lembar daun salam, 1 batang serai, 1 tomat","2 salam yaprağı, 1 sap limon otu, 1 domates"],["Daun pisang untuk membungkus","Sarmak için muz yaprağı"],["Bumbu halus: 5 bawang merah, 3 bawang putih, 3 cabai merah, 2 cm kunyit, 1 cm jahe, 2 kemiri sangrai, garam","Ezilmiş baharat: 5 arpacık soğan, 3 diş sarımsak, 3 kırmızı biber, 2 cm taze zerdeçal, 1 cm zencefil, 2 kavrulmuş kemiri, tuz"]],
+  s:[["Lumuri ikan dengan air jeruk nipis, diamkan 10 menit.","Balığı misket limonu suyuyla ovup 10 dk beklet."],["Balur ikan dengan bumbu halus.","Balığı ezilmiş baharatla kapla."],["Bungkus dengan daun pisang bersama kemangi, salam, serai, dan tomat.","Kemangi, salam, limon otu ve domatesle birlikte muz yaprağına sar."],["Kukus 30 menit. Jika ingin lebih harum, bakar sebentar di teflon tanpa minyak 5 menit.","30 dk buharda pişir. Daha aromatik olsun istersen yağsız teflonda 5 dk közle."]]},
+ {e:"🍗",t:["Ayam Bakar Bumbu Kuning (tanpa goreng)","Ayam Bakar Bumbu Kuning (kızartmasız)"],m:["4–5 porsi · cocok untuk meal prep · tahan 3 hari","4–5 porsiyon · meal prep'e uygun · 3 gün dayanır"],
+  i:[["500 g ayam tanpa kulit (dada/paha)","500 g derisiz tavuk (göğüs/but)"],["2 daun salam, 2 daun jeruk, 1 batang serai, 2 cm lengkuas (memarkan)","2 salam yaprağı, 2 kafir limon yaprağı, 1 sap limon otu, 2 cm ezilmiş galangal"],["300 ml air","300 ml su"],["Bumbu halus: 6 bawang merah, 4 bawang putih, 3 cm kunyit, 2 cm jahe, 1 sdt ketumbar, garam","Ezilmiş baharat: 6 arpacık soğan, 4 diş sarımsak, 3 cm zerdeçal, 2 cm zencefil, 1 tk kişniş tohumu, tuz"]],
+  s:[["Ungkep ayam bersama bumbu dan air sampai air menyusut (30–40 menit).","Tavuğu baharat ve suyla, su çekilene kadar pişir (ungkep, 30–40 dk)."],["Bakar di teflon atau airfryer 200°C selama 10–12 menit sambil dioles sisa bumbu.","Kalan baharatla sürerek teflonda veya airfryer'da 200°C'de 10–12 dk pişir."],["Opsional: oles 1 sdt kecap manis untuk warna.","İsteğe bağlı: renk için 1 tk kecap manis sür."],["Simpan di kulkas, tahan sampai 3 hari.","Buzdolabında 3 güne kadar saklanır."]]},
+ {e:"🟫",t:["Tempe Bakar Tanpa Minyak","Yağsız Tempe Bakar"],m:["2 porsi · ±150 kkal/porsi","2 porsiyon · ~150 kcal/porsiyon"],
+  i:[["1 papan tempe (±200 g), iris","1 kalıp tempe (~200 g), dilimlenmiş"],["2 siung bawang putih halus, ½ sdt ketumbar, garam","2 diş ezilmiş sarımsak, ½ tk kişniş tohumu, tuz"],["1 sdm air asam jawa + 50 ml air","1 yk demirhindi suyu + 50 ml su"]],
+  s:[["Rendam tempe dalam campuran bumbu 15 menit.","Tempeyi baharat karışımında 15 dk beklet."],["Panggang di teflon tanpa minyak atau airfryer 180°C selama 10 menit.","Yağsız teflonda veya airfryer'da 180°C'de 10 dk pişir."],["Sajikan dengan sambal matah.","Sambal matah ile servis et."]]},
+ {e:"🌶️",t:["Sambal Matah","Sambal Matah"],m:["4–6 porsi · segar, tanpa dimasak","4–6 porsiyon · taze, pişirmeden"],
+  i:[["8 bawang merah iris tipis","8 arpacık soğan, ince doğranmış"],["5 cabai rawit iris","5 acı biber (rawit), doğranmış"],["2 batang serai (bagian putih) iris tipis","2 sap limon otunun beyaz kısmı, ince doğranmış"],["3 daun jeruk iris halus","3 kafir limon yaprağı, ince kıyılmış"],["Garam, perasan jeruk limau, 1 sdt minyak kelapa","Tuz, limau suyu, 1 tk hindistan cevizi yağı"],["Opsional: ½ sdt terasi bakar","İsteğe bağlı: ½ tk közlenmiş terasi"]],
+  s:[["Aduk semua bahan dalam mangkuk.","Tüm malzemeleri bir kasede karıştır."],["Cukup 1 sdt minyak saja — versi tradisional memakai jauh lebih banyak.","Sadece 1 tk yağ yeter — geleneksel tarifte çok daha fazlası kullanılır."]]},
+ {e:"🥜",t:["Bumbu Kacang Versi Ringan","Hafif Fıstık Sosu (bumbu kacang)"],m:["±8 porsi @ 2 sdm · ±75 kkal/porsi · tahan 5 hari","~8 porsiyon (2'şer yk) · ~75 kcal/porsiyon · 5 gün dayanır"],
+  i:[["100 g kacang tanah sangrai (bukan goreng)","100 g kavrulmuş yer fıstığı (kızartılmamış)"],["2 bawang putih, 2–3 cabai, 1 cm kencur, 1 daun jeruk","2 diş sarımsak, 2–3 biber, 1 cm kencur, 1 kafir limon yaprağı"],["1 sdt gula aren, garam, perasan jeruk limau","1 tk gula aren, tuz, limau suyu"],["250 ml air hangat","250 ml ılık su"]],
+  s:[["Blender semua bahan sampai halus.","Tüm malzemeleri blenderdan geçir."],["Masak sebentar sampai mendidih sambil diaduk.","Karıştırarak kaynayana kadar kısa süre pişir."],["Simpan di kulkas. Pakai maksimal 2 sdm per porsi untuk gado-gado, pecel, karedok, atau sate.","Buzdolabında sakla. Gado-gado, pecel, karedok veya sate için porsiyon başına en fazla 2 yk kullan."]]},
+ {e:"🥣",t:["Sayur Asem","Sayur Asem (ekşili sebze çorbası)"],m:["4 porsi · tanpa minyak","4 porsiyon · yağsız"],
+  i:[["Labu siam, kacang panjang, jagung manis, daun melinjo","Chayote (labu siam), uzun fasulye, tatlı mısır, melinjo yaprağı"],["2 sdm asam jawa, 1 sdt gula merah, 2 daun salam, 2 cm lengkuas","2 yk demirhindi, 1 tk palmiye şekeri, 2 salam yaprağı, 2 cm galangal"],["1,5 liter air","1,5 litre su"],["Bumbu halus: 4 bawang merah, 3 bawang putih, 3 cabai, ½ sdt terasi, 1 kemiri","Ezilmiş baharat: 4 arpacık soğan, 3 diş sarımsak, 3 biber, ½ tk terasi, 1 kemiri"]],
+  s:[["Rebus bumbu halus bersama air, salam, dan lengkuas.","Baharatı su, salam ve galangal ile kaynat."],["Masukkan sayur mulai dari yang paling keras (jagung, labu siam), lalu yang lunak.","Sebzeleri en sertten (mısır, chayote) başlayarak ekle, yumuşakları sona bırak."],["Tambahkan asam jawa dan gula merah, koreksi rasa.","Demirhindi ve şekeri ekle, tadını ayarla."]]},
+ {e:"🍲",t:["Sop Ayam Bening","Berrak Tavuk Çorbası (sop ayam)"],m:["3 porsi","3 porsiyon"],
+  i:[["200 g dada ayam","200 g tavuk göğsü"],["Wortel, 1 kentang kecil, buncis, kol","Havuç, 1 küçük patates, taze fasulye, lahana"],["Seledri, daun bawang, 3 bawang putih geprek","Kereviz yaprağı, taze soğan, 3 diş ezilmiş sarımsak"],["Merica, sedikit pala, garam","Karabiber, biraz muskat, tuz"]],
+  s:[["Rebus ayam, buang buih dan lemaknya.","Tavuğu haşla, köpüğünü ve yağını al."],["Tumis bawang putih dengan ½ sdt minyak, lalu masukkan ke kuah.","Sarımsağı ½ tk yağda sotele, suya ekle."],["Masukkan sayuran, masak sebentar, taburi seledri dan daun bawang.","Sebzeleri ekleyip kısa süre pişir, kereviz ve taze soğan serp."]]},
+ {e:"🍳",t:["Telur Dadar Sayur","Sebzeli Omlet (telur dadar)"],m:["1 porsi · ±200 kkal","1 porsiyon · ~200 kcal"],
+  i:[["2 telur","2 yumurta"],["Wortel parut, bayam atau sawi cincang, daun bawang","Rendelenmiş havuç, kıyılmış ıspanak veya sawi, taze soğan"],["Garam, merica, ½ sdt minyak","Tuz, karabiber, ½ tk yağ"]],
+  s:[["Kocok telur dengan sayur dan bumbu.","Yumurtaları sebze ve baharatla çırp."],["Oles teflon dengan ½ sdt minyak memakai kuas, masak dengan api sedang.","Teflonu fırçayla ½ tk yağla yağla, orta ateşte pişir."]]},
+ {e:"🟢",t:["Bubur Kacang Hijau Tanpa Santan","Santansız Bubur Kacang Hijau (maş lapası)"],m:["4 porsi","4 porsiyon"],
+  i:[["100 g kacang hijau, rendam semalam","100 g maş fasulyesi, bir gece ıslatılmış"],["1 liter air, 2 lembar daun pandan, 2 cm jahe","1 litre su, 2 pandan yaprağı, 2 cm zencefil"],["Per porsi: 1 sdt gula aren atau pisang matang","Porsiyon başına: 1 tk gula aren veya olgun muz"],["Opsional: 50 ml susu kedelai tawar","İsteğe bağlı: 50 ml şekersiz soya sütü"]],
+  s:[["Rebus kacang hijau dengan pandan dan jahe sampai lembut (±45 menit).","Maş fasulyesini pandan ve zencefille yumuşayana kadar haşla (~45 dk)."],["Saat disajikan, tambahkan gula aren atau pisang, dan susu kedelai jika suka.","Servis ederken gula aren veya muz, istersen soya sütü ekle."]]}
+];
+
+const PORTION=[
+ ["½ nasi = ±100 g nasi matang (½ mangkuk / 1 centong kecil)","½ pirinç = ~100 g pişmiş pirinç (yarım kase)"],
+ ["¼ nasi = ±50 g nasi matang","¼ pirinç = ~50 g pişmiş pirinç"],
+ ["Ayam/daging ±100 g (seukuran telapak tangan), ikan 100–120 g","Tavuk/et ~100 g (avuç içi kadar), balık 100–120 g"],
+ ["Tempe 2 potong (±60 g), tahu 2 potong (±100 g)","Tempe 2 parça (~60 g), tahu 2 parça (~100 g)"],
+ ["Bumbu kacang maksimal 2 sdm per porsi","Fıstık sosu porsiyon başına en fazla 2 yk"],
+ ["Isi Piringku: ½ sayur & buah, ¼ protein, ¼ karbohidrat","Tabak kuralı: ½ sebze & meyve, ¼ protein, ¼ karbonhidrat"]
+];
+const COOK=[
+ ["Ganti goreng dengan kukus, rebus, pepes, atau ungkep lalu bakar.","Kızartma yerine buğulama, haşlama, pepes veya ungkep + ızgara."],
+ ["Airfryer: tempe, tahu, dan ayam 180–200°C selama 10–15 menit.","Airfryer: tempe, tahu ve tavuk 180–200°C'de 10–15 dk."],
+ ["Takar minyak dengan sendok: 1 sdm ≈ 120 kkal. Untuk menumis cukup 1 sdt per porsi.","Yağı kaşıkla ölç: 1 yk ≈ 120 kcal. Sote için porsiyon başına 1 tk yeter."],
+ ["Wajan mulai kering? Tambahkan sedikit air atau kaldu, bukan minyak.","Tava kuruyunca yağ değil, biraz su veya et suyu ekle."],
+ ["Santan diencerkan 1:3 dengan air, atau ganti susu kedelai tawar; masukkan di akhir.","Santanı 1:3 suyla incelt veya şekersiz soya sütü kullan; en sonda ekle."],
+ ["Gula & kecap manis maksimal 1 sdt per porsi. Untuk asam-manis pakai tomat, nanas, atau asam jawa.","Şeker ve kecap manis porsiyon başına en fazla 1 tk. Ekşi-tatlı tat için domates, ananas veya demirhindi kullan."],
+ ["Kurangi garam, perbanyak rempah: serai, daun jeruk, lengkuas, kunyit, jahe, kemangi, jeruk limau.","Tuzu azalt, baharatı artır: limon otu, kafir limon yaprağı, galangal, zerdeçal, zencefil, kemangi, limau."],
+ ["Buang kulit dan lemak ayam. Dinginkan kaldu, lalu angkat lapisan lemaknya.","Tavuğun derisini ve yağını al. Et suyunu soğut, üstteki yağ tabakasını at."],
+ ["Campur beras putih & merah 1:1. Nasi yang didinginkan lalu dipanaskan lagi lebih mengenyangkan.","Beyaz ve kırmızı pirinci 1:1 karıştır. Soğutulup tekrar ısıtılan pirinç daha tok tutar."],
+ ["Kangen kerupuk? Microwave kerupuk mentah 30–60 detik tanpa minyak, maksimal 2–3 keping.","Kerupuk özledin mi? Çiğ kerupuku yağsız 30–60 sn mikrodalgada pişir, en fazla 2–3 tane."]
+];
+const DRINK_OK=[["Air putih 8–10 gelas","8–10 bardak su"],["Teh tawar","Şekersiz çay"],["Kopi hitam (maks. 2 cangkir)","Sade kahve (en fazla 2 fincan)"],["Wedang jahe tanpa gula","Şekersiz wedang jahe"],["Air kelapa muda tanpa gula","Şekersiz genç hindistan cevizi suyu"],["Infused water (jeruk nipis, timun, mint)","Meyveli su (misket limonu, salatalık, nane)"]];
+const DRINK_NO=[["Es teh manis","Es teh manis"],["Kopi susu gula aren","Kopi susu gula aren"],["Boba & minuman bersoda","Boba ve gazlı içecekler"],["Es cendol & es campur","Es cendol & es campur"],["Jus dengan gula / SKM","Şekerli / kondens sütlü meyve suyu"],["Alpukat kocok","Alpukat kocok"]];
+const LIMIT=[["Gorengan & kerupuk","Gorengan ve kerupuk"],["Mie instan","Hazır erişte"],["Martabak & roti manis","Martabak ve tatlı ekmekler"],["Kue basah bersantan & bergula (klepon, kue lapis)","Santanlı ve şekerli kue (klepon, kue lapis)"],["Susu kental manis","Kondens süt"],["Nasi uduk / nasi kuning setiap hari","Her gün nasi uduk / nasi kuning"]];
+const EATOUT=[
+ ["Warteg","Pilih lauk bakar/rebus/pepes + sayur bening. “Nasinya setengah saja, tanpa kuah santan.”","Izgara/haşlama/pepes protein + sayur bening seç. “Nasinya setengah saja, tanpa kuah santan.”"],
+ ["Nasi Padang","“Nasi sedikit, kuahnya dipisah.” Pilih ayam/ikan bakar + daun singkong + sambal ijo.","“Nasi sedikit, kuahnya dipisah.” Ayam/ikan bakar + manyok yaprağı + sambal ijo seç."],
+ ["Sate","“Bumbunya dipisah”, lontong cukup ½ porsi.","“Bumbunya dipisah” (sos ayrı), lontong yarım porsiyon."],
+ ["Bakso / soto","Tanpa mie & bihun (atau setengah), tanpa gorengan & kerupuk.","Erişte ve bihun yok (ya da yarım), gorengan ve kerupuk yok."],
+ ["Rumah makan Sunda","Pilihan terbaik: ikan bakar/pepes + lalapan + ½ nasi.","En iyi seçim: ikan bakar/pepes + lalapan + ½ pirinç."],
+ ["Pecel lele","Ganti lele goreng dengan ayam atau ikan bakar.","Kızarmış lele yerine ayam veya ikan bakar seç."]
+];
+const TIPS=[
+ ["Di warung, bilang: “Nasinya setengah saja.”","Warung'da “Nasinya setengah saja” (pirincin yarısı yeter) de."],
+ ["Takar minyak dengan sendok: 1 sdm ≈ 120 kkal.","Yağı kaşıkla ölç: 1 yemek kaşığı ≈ 120 kcal."],
+ ["Mulai makan dengan lalapan atau sayur supaya cepat kenyang.","Yemeğe lalapan veya sebzeyle başla, daha çabuk doyarsın."],
+ ["Ganti es teh manis dengan teh tawar — hemat ±100 kkal.","Es teh manis yerine şekersiz çay iç — ~100 kcal tasarruf."],
+ ["Tidur 7–8 jam membantu mengendalikan rasa lapar.","7–8 saat uyku açlığı kontrol etmeye yardım eder."],
+ ["Bumbu kacang maksimal 2 sdm per porsi.","Fıstık sosu porsiyon başına en fazla 2 yemek kaşığı."],
+ ["Santan? Encerkan 1:3 dengan air.","Santan mı? 1'e 3 oranında suyla incelt."],
+ ["Kangen kerupuk? Microwave kerupuk mentah 30–60 detik, tanpa minyak.","Kerupuk özledin mi? Çiğ kerupuku yağsız 30–60 sn mikrodalgada pişir."],
+ ["Minum segelas air sebelum makan.","Yemekten önce bir bardak su iç."],
+ ["Pilih bakar, kukus, rebus, atau pepes — bukan goreng.","Goreng yerine bakar, kukus, rebus veya pepes seç."],
+ ["Makan malam paling lambat 3 jam sebelum tidur.","Akşam yemeğini yatmadan en geç 3 saat önce ye."],
+ ["Menjelang haid, berat bisa naik 1–2 kg karena air. Itu normal.","Adet öncesi 1–2 kg su tutma normaldir, panik yapma."],
+ ["Minggu sore: siapkan meal prep untuk 3 hari ke depan.","Pazar akşamı: önümüzdeki 3 gün için meal prep yap."],
+ ["Badminton: hitung waktu bermain bersih, bukan waktu di lapangan.","Badminton: kortta geçen süreyi değil, net oyun süresini say."]
+];
+const SHOP=[
+ {k:"p",t:["Protein","Protein"],i:[["Dada / paha ayam","Tavuk göğsü / but"],["Ikan segar (kembung, nila, tongkol, bandeng)","Taze balık (uskumru, tilapia, ton, sütbalığı)"],["Udang","Karides"],["Telur (±20 butir per pekan)","Yumurta (haftada ~20 adet)"],["Tempe","Tempe"],["Tahu","Tahu (tofu)"],["Daging sapi tanpa lemak (sedikit)","Yağsız dana eti (az)"]]},
+ {k:"k",t:["Karbohidrat","Karbonhidrat"],i:[["Beras merah","Kırmızı pirinç"],["Beras putih","Beyaz pirinç"],["Ubi / ubi ungu","Tatlı patates / mor tatlı patates"],["Singkong","Manyok (singkong)"],["Jagung manis","Tatlı mısır"],["Kentang","Patates"],["Lontong / ketupat","Lontong / ketupat"]]},
+ {k:"s",t:["Sayur","Sebze"],i:[["Kangkung","Kangkung (su ıspanağı)"],["Bayam","Bayam (ıspanak)"],["Sawi","Sawi (Çin lahanası)"],["Buncis","Buncis (taze fasulye)"],["Kacang panjang","Kacang panjang (uzun fasulye)"],["Labu siam","Labu siam (chayote)"],["Wortel","Wortel (havuç)"],["Tauge","Tauge (fasulye filizi)"],["Timun","Timun (salatalık)"],["Kol","Kol (lahana)"],["Tomat","Tomat (domates)"],["Kemangi","Kemangi (limon fesleğeni)"],["Daun singkong","Daun singkong (manyok yaprağı)"],["Oyong","Oyong (lif kabağı)"],["Jamur","Jamur (mantar)"]]},
+ {k:"b",t:["Buah","Meyve"],i:[["Pepaya","Papaya"],["Semangka","Karpuz"],["Nanas","Ananas"],["Jambu biji","Guava (jambu biji)"],["Salak","Salak"],["Pisang","Muz"],["Jeruk","Mandalina (jeruk)"],["Mangga","Mango"]]},
+ {k:"r",t:["Bumbu & rempah","Baharat & otlar"],i:[["Bawang merah","Bawang merah (arpacık soğan)"],["Bawang putih","Bawang putih (sarımsak)"],["Cabai merah & rawit","Kırmızı biber & acı biber (rawit)"],["Kunyit","Kunyit (taze zerdeçal)"],["Jahe","Jahe (zencefil)"],["Lengkuas","Lengkuas (galangal)"],["Kencur","Kencur"],["Serai","Serai (limon otu)"],["Daun jeruk","Daun jeruk (kafir limon yaprağı)"],["Daun salam","Daun salam"],["Asam jawa","Asam jawa (demirhindi)"],["Jeruk limau / nipis","Limau / misket limonu"],["Terasi","Terasi (karides ezmesi)"],["Kemiri","Kemiri (mum cevizi)"],["Ketumbar","Ketumbar (kişniş tohumu)"],["Merica","Merica (karabiber)"]]},
+ {k:"l",t:["Lainnya","Diğer"],i:[["Kacang tanah","Yer fıstığı"],["Edamame beku","Dondurulmuş edamame"],["Susu kedelai tawar","Şekersiz soya sütü"],["Yogurt plain","Sade yoğurt"],["Minyak kelapa (sedikit)","Hindistan cevizi yağı (az)"],["Daun pisang","Muz yaprağı"],["Gula aren (sedikit)","Gula aren (az)"]]}
+];
+const PREP=[
+ ["Ungkep 500 g ayam bumbu kuning (untuk 3 hari)","500 g tavuğu bumbu kuning ile ungkep yap (3 günlük)"],
+ ["Rebus 8 telur","8 yumurta haşla"],
+ ["Buat 1 batch bumbu kacang ringan","1 kavanoz hafif fıstık sosu hazırla"],
+ ["Ungkep tempe & tahu, simpan di kulkas","Tempe ve tahuyu ungkep yapıp buzdolabına koy"],
+ ["Masak nasi merah, bagi per porsi 100 g","Kırmızı pirinci pişir, 100 g'lık porsiyonlara böl"],
+ ["Kukus ubi & jagung untuk 2–3 hari","2–3 günlük ubi ve mısırı buharda pişir"],
+ ["Cuci & potong lalapan, simpan dalam wadah beralas tisu","Lalapan sebzelerini yıka, doğra, kâğıt havlulu kapta sakla"]
+];
+
+const SLOTS={id:["Sarapan","Camilan pagi","Makan siang","Camilan sore","Makan malam"],tr:["Kahvaltı","Sabah ara öğünü","Öğle yemeği","İkindi ara öğünü","Akşam yemeği"]};
+const KCAL=[350,120,450,120,380];
+const WDN={id:["Senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu"],tr:["Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi","Pazar"]};
+const SETS=[["2 set × 10–12","2 set × 10–12"],["3 set × 12","3 set × 12"],["3 set × 12–15 (+beban)","3 set × 12–15 (+ağırlık)"],["3–4 set × 12–15","3–4 set × 12–15"]];
+const PLANK=[["20 dtk","20 sn"],["30 dtk","30 sn"],["40 dtk","40 sn"],["45–60 dtk","45–60 sn"]];
+const STEPS=[7000,8000,9000,10000];
+const TABS=[["today","🏠"],["menu","📅"],["weight","⚖️"],["recipes","👩‍🍳"],["shopping","🛒"]];
+
+const T={
+ id:{
+  sub:"Program 28 hari · Menu Nusantara",
+  t_today:"Hari ini",t_menu:"Menu",t_weight:"Berat",t_recipes:"Resep",t_shopping:"Belanja",
+  day:"Hari",today:"Hari ini",backToday:"← Kembali ke hari ini",prevDay:"Hari sebelumnya",nextDay:"Hari berikutnya",
+  flex:"Hari fleksibel",flexTxt:"Boleh 1 menu bersantan, porsi kecil.",
+  progress:"Progres hari ini",tasks:"tugas",streak:"🔥 {n} hari beruntun",
+  meals:"Menu hari ini",kcalDay:"±1.420 kkal",
+  water:"Air putih",waterTxt:"{n}/10 gelas · {l} L",waterGoal:"Target 8–10 gelas (2–2,5 L). Ketuk gelas untuk mencatat.",
+  exercise:"Olahraga",markDone:"Selesai",
+  steps:"Langkah",stepsTarget:"Target {n}",stepsPh:"Ketik jumlah langkah hari ini",
+  tip:"💡 Tips hari ini",
+  weighDay:"Hari timbang! ⚖️",weighTxt:"Timbang pagi hari, setelah buang air dan sebelum makan.",goWeigh:"Catat",
+  beforeTitle:"Program belum dimulai",beforeTxt:"Program dimulai {d} ({n} hari lagi).",startToday:"Mulai hari ini",
+  welcome:"Selamat datang! 👋",welcomeTxt:"Program diet sehat 28 hari dengan menu Nusantara. Menu dan olahraga mengikuti hari dalam seminggu, jadi kamu bisa mulai kapan saja.",
+  startDate:"Tanggal mulai",startBtn:"Mulai program",profileLine:"{h} cm · {s} kg → target {g} kg (ubah di ⚙️)",
+  realistic:"Target realistis bulan pertama: turun 3–4 kg (0,5–1 kg per pekan). Ulangi program 1 bulan lagi untuk mencapai target akhir.",
+  month2:"Bulan {m}: ulangi menu 4 pekan, olahraga tetap di level pekan 4.",
+  menuTitle:"Menu 4 pekan",weekChip:"Pekan {n}",openDay:"Buka →",bShort:"Sarapan",lShort:"Siang",dShort:"Malam",sShort:"Camilan",isToday:"Hari ini",
+  weightTitle:"Berat badan",startW:"Awal",nowW:"Sekarang",change:"Perubahan",left:"Sisa",bmi:"IMT",toTarget:"{p}% menuju target {g} kg",
+  bmiCat:["Berat kurang","Normal","Berat berlebih","Obesitas"],
+  chartTitle:"Grafik berat badan",target:"Target",healthyBand:"Laju sehat (turun 0,5–1 kg/pekan)",series:"Berat kamu",noData:"Belum ada data. Catat berat pertamamu di bawah.",
+  addWeight:"Catat berat",date:"Tanggal",kg:"Berat (kg)",waist:"Pinggang (cm)",waistShort:"Pinggang",optional:"opsional",save:"Simpan",saved:"Tersimpan ✓",invalidKg:"Masukkan berat antara 30 dan 250 kg.",
+  history:"Riwayat",del:"Hapus",sure:"Yakin?",
+  recipesTab:"Resep",tipsTab:"Tips",ingredients:"Bahan",how:"Cara",
+  portion:"Ukuran porsi",cooking:"Teknik memasak sehat",drinks:"Minuman",ok:"✅ Boleh",avoid:"❌ Hindari",limit:"Batasi atau hindari",eatOut:"Makan di luar",health:"⚕️ Peringatan kesehatan",
+  healthTxt:"Konsultasikan dengan dokter atau ahli gizi jika hamil/menyusui, punya diabetes, gangguan tiroid, hipertensi, maag/GERD, atau rutin minum obat. Jangan makan di bawah 1.200 kkal per hari. Jika pusing atau sangat lemas, tambah sedikit porsi.",
+  shopTab:"Belanja",prepTab:"Meal prep",prepTitle:"Meal prep Minggu sore (±1,5 jam)",reset:"Reset centang",resetSure:"Ketuk lagi untuk reset",
+  settings:"Pengaturan",height:"Tinggi (cm)",startWeight:"Berat awal (kg)",targetWeight:"Target (kg)",language:"Bahasa",close:"Tutup",
+  resetAll:"Hapus semua data",resetAllSure:"Ketuk lagi: semua data akan terhapus",syncTitle:"Penyimpanan",
+  sync_local:"💾 Tersimpan di perangkat ini",sync_connecting:"⏳ Menghubungkan…",sync_synced:"☁️ Tersinkron ke akunmu",sync_saving:"☁️ Menyimpan…",sync_offline:"⚠️ Belum terhubung · tersimpan di perangkat",sync_error:"⚠️ Gagal sinkron · tersimpan di perangkat",
+  syncNote:"Saat dibuka di claude.ai dalam keadaan login, datamu tersimpan di akunmu dan tersinkron antara HP dan laptop. Hanya kamu yang bisa melihatnya.",
+  kcal:"kkal",approx:"±",switchTo:"Türkçe'ye geç",settingsLbl:"Pengaturan",
+  localNote:"Versi ini berjalan tanpa Claude dan tanpa internet. Datamu hanya tersimpan di perangkat ini, jadi buat cadangan sesekali.",
+  installTitle:"📲 Pasang di layar utama",installTxt:"iPhone: Safari → tombol Bagikan → “Tambahkan ke Layar Utama”. Android: Chrome → ⋮ → “Tambahkan ke layar utama” / “Instal aplikasi”.",
+  backupTitle:"Cadangan",backupTxt:"Salin atau unduh datamu, lalu pulihkan di perangkat atau versi lain.",copyBackup:"Salin cadangan",downloadBackup:"Unduh file",copied:"Cadangan tersalin ✓",copyFail:"Tidak bisa menyalin otomatis. Pilih teks di bawah lalu salin.",
+  restoreLbl:"Pulihkan dari cadangan",restorePh:"Tempel teks cadangan di sini…",orFile:"atau pilih file cadangan",restoreBtn:"Pulihkan",restoreSure:"Ketuk lagi: data sekarang akan diganti",restored:"Data dipulihkan ✓",badBackup:"Cadangan tidak valid."
+ },
+ tr:{
+  sub:"28 günlük program · Endonezya menüsü",
+  t_today:"Bugün",t_menu:"Menü",t_weight:"Kilo",t_recipes:"Tarifler",t_shopping:"Alışveriş",
+  day:"Gün",today:"Bugün",backToday:"← Bugüne dön",prevDay:"Önceki gün",nextDay:"Sonraki gün",
+  flex:"Esnek gün",flexTxt:"1 santanlı yemek serbest, küçük porsiyon.",
+  progress:"Bugünkü ilerleme",tasks:"görev",streak:"🔥 {n} gün üst üste",
+  meals:"Bugünün menüsü",kcalDay:"~1.420 kcal",
+  water:"Su",waterTxt:"{n}/10 bardak · {l} L",waterGoal:"Hedef 8–10 bardak (2–2,5 L). Kaydetmek için bardağa dokun.",
+  exercise:"Egzersiz",markDone:"Tamamlandı",
+  steps:"Adım",stepsTarget:"Hedef {n}",stepsPh:"Bugünkü adım sayısını yaz",
+  tip:"💡 Günün ipucu",
+  weighDay:"Tartı günü! ⚖️",weighTxt:"Sabah, tuvaletten sonra ve kahvaltıdan önce tartıl.",goWeigh:"Kaydet",
+  beforeTitle:"Program henüz başlamadı",beforeTxt:"Program {d} tarihinde başlıyor ({n} gün kaldı).",startToday:"Bugün başla",
+  welcome:"Hoş geldin! 👋",welcomeTxt:"Endonezya mutfağıyla 28 günlük sağlıklı diyet programı. Menü ve egzersiz haftanın gününe göre ilerler, yani istediğin gün başlayabilirsin.",
+  startDate:"Başlangıç tarihi",startBtn:"Programı başlat",profileLine:"{h} cm · {s} kg → hedef {g} kg (⚙️ ile değiştir)",
+  realistic:"İlk ay için gerçekçi hedef: 3–4 kg (haftada 0,5–1 kg). Son hedefe ulaşmak için programı bir ay daha tekrarla.",
+  month2:"{m}. ay: 4 haftalık menüyü tekrarla, egzersiz 4. hafta seviyesinde kalır.",
+  menuTitle:"4 haftalık menü",weekChip:"{n}. Hafta",openDay:"Aç →",bShort:"Kahvaltı",lShort:"Öğle",dShort:"Akşam",sShort:"Ara öğün",isToday:"Bugün",
+  weightTitle:"Kilo takibi",startW:"Başlangıç",nowW:"Şu an",change:"Değişim",left:"Kalan",bmi:"VKİ",toTarget:"{g} kg hedefine %{p}",
+  bmiCat:["Zayıf","Normal","Fazla kilolu","Obez"],
+  chartTitle:"Kilo grafiği",target:"Hedef",healthyBand:"Sağlıklı hız (haftada 0,5–1 kg)",series:"Kilon",noData:"Henüz veri yok. İlk kilonu aşağıdan kaydet.",
+  addWeight:"Kilo kaydet",date:"Tarih",kg:"Kilo (kg)",waist:"Bel (cm)",waistShort:"Bel",optional:"isteğe bağlı",save:"Kaydet",saved:"Kaydedildi ✓",invalidKg:"30 ile 250 kg arasında bir değer gir.",
+  history:"Geçmiş",del:"Sil",sure:"Emin misin?",
+  recipesTab:"Tarifler",tipsTab:"İpuçları",ingredients:"Malzemeler",how:"Yapılışı",
+  portion:"Porsiyon ölçüleri",cooking:"Sağlıklı pişirme",drinks:"İçecekler",ok:"✅ Serbest",avoid:"❌ Kaçın",limit:"Sınırla veya kaçın",eatOut:"Dışarıda yemek",health:"⚕️ Sağlık uyarısı",
+  healthTxt:"Hamileysen veya emziriyorsan; diyabet, tiroid, tansiyon, gastrit/reflü gibi bir sorunun varsa ya da düzenli ilaç kullanıyorsan önce doktora veya diyetisyene danış. Günde 1.200 kcal'nin altına inme. Baş dönmesi veya aşırı halsizlik olursa porsiyonu biraz artır.",
+  shopTab:"Alışveriş",prepTab:"Meal prep",prepTitle:"Pazar akşamı meal prep (~1,5 saat)",reset:"İşaretleri sıfırla",resetSure:"Sıfırlamak için tekrar dokun",
+  settings:"Ayarlar",height:"Boy (cm)",startWeight:"Başlangıç kilosu (kg)",targetWeight:"Hedef (kg)",language:"Dil",close:"Kapat",
+  resetAll:"Tüm verileri sil",resetAllSure:"Tekrar dokun: tüm veriler silinecek",syncTitle:"Kayıt",
+  sync_local:"💾 Bu cihazda kayıtlı",sync_connecting:"⏳ Bağlanıyor…",sync_synced:"☁️ Hesabınla senkronize",sync_saving:"☁️ Kaydediliyor…",sync_offline:"⚠️ Bağlanamadı · cihazda kayıtlı",sync_error:"⚠️ Senkronizasyon başarısız · cihazda kayıtlı",
+  syncNote:"claude.ai'de oturum açıkken açtığında verilerin hesabında saklanır ve telefonla bilgisayar arasında senkronize olur. Verilerini yalnızca sen görebilirsin.",
+  kcal:"kcal",approx:"~",switchTo:"Bahasa Indonesia'ya geç",settingsLbl:"Ayarlar",
+  localNote:"Bu sürüm Claude olmadan ve internetsiz çalışır. Verilerin sadece bu cihazda saklanır, ara sıra yedek al.",
+  installTitle:"📲 Ana ekrana ekle",installTxt:"iPhone: Safari → Paylaş düğmesi → “Ana Ekrana Ekle”. Android: Chrome → ⋮ → “Ana ekrana ekle” / “Uygulamayı yükle”.",
+  backupTitle:"Yedek",backupTxt:"Verilerini kopyala veya indir, sonra başka bir cihazda ya da sürümde geri yükle.",copyBackup:"Yedeği kopyala",downloadBackup:"Dosya indir",copied:"Yedek kopyalandı ✓",copyFail:"Otomatik kopyalanamadı. Aşağıdaki metni seçip kopyala.",
+  restoreLbl:"Yedekten geri yükle",restorePh:"Yedek metnini buraya yapıştır…",orFile:"veya yedek dosyası seç",restoreBtn:"Geri yükle",restoreSure:"Tekrar dokun: mevcut veriler değişecek",restored:"Veriler geri yüklendi ✓",badBackup:"Geçersiz yedek."
+ }
+};
+
+/* ================= HELPERS ================= */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const pad=n=>String(n).padStart(2,"0");
+const ymd=d=>d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+const isYmd=s=>typeof s==="string"&&/^\d{4}-\d{2}-\d{2}$/.test(s);
+const parse=s=>{const a=s.split("-").map(Number);return new Date(a[0],a[1]-1,a[2]);};
+const addDays=(s,n)=>{const d=parse(s);d.setDate(d.getDate()+n);return ymd(d);};
+const diffDays=(a,b)=>Math.round((parse(b)-parse(a))/86400000);
+const today=()=>ymd(new Date());
+const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+const num=(v,def,min,max)=>{v=Number(v);return isFinite(v)?clamp(v,min,max):def;};
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const L=a=>state.lang==="tr"?a[1]:a[0];
+function t(k,vars){let s=T[state.lang][k];if(s==null)s=T.id[k];if(s==null)return k;if(vars&&typeof s==="string")for(const v in vars)s=s.split("{"+v+"}").join(vars[v]);return s;}
+const loc=()=>state.lang==="tr"?"tr-TR":"id-ID";
+const fmtNum=(n,d)=>Number(n).toLocaleString(loc(),{maximumFractionDigits:d==null?1:d});
+const fmtDate=s=>new Intl.DateTimeFormat(loc(),{weekday:"long",day:"numeric",month:"long"}).format(parse(s));
+const fmtShort=s=>new Intl.DateTimeFormat(loc(),{day:"numeric",month:"short"}).format(parse(s));
+const parseDec=v=>parseFloat(String(v||"").replace(",","."));
+
+/* ================= STATE ================= */
+const LS_KEY="dietNusantara.v1";
+function defaultState(){return {v:1,lang:"id",startDate:null,profile:{height:160,startWeight:65,target:58},days:{},weights:[],shop:{},prep:{},updatedAt:0};}
+function normalize(s){
+  const o=defaultState();
+  if(!s||typeof s!=="object")return o;
+  o.lang=s.lang==="tr"?"tr":"id";
+  o.startDate=isYmd(s.startDate)?s.startDate:null;
+  const p=s.profile||{};
+  o.profile={height:num(p.height,160,100,230),startWeight:num(p.startWeight,65,30,250),target:num(p.target,58,30,250)};
+  if(s.days&&typeof s.days==="object")for(const k of Object.keys(s.days)){
+    if(!isYmd(k))continue;const r=s.days[k]||{};
+    o.days[k]={m:[0,1,2,3,4].map(i=>Array.isArray(r.m)&&r.m[i]?1:0),ex:r.ex?1:0,w:Math.round(num(r.w,0,0,10)),st:Math.round(num(r.st,0,0,100000))};
+  }
+  if(Array.isArray(s.weights))o.weights=s.weights.filter(x=>x&&isYmd(x.date)&&isFinite(Number(x.kg))).map(x=>({date:x.date,kg:Math.round(num(x.kg,0,30,250)*10)/10,waist:Number(x.waist)>=40&&Number(x.waist)<=200?Math.round(Number(x.waist)*10)/10:null})).sort((a,b)=>a.date<b.date?-1:a.date>b.date?1:0);
+  for(const key of ["shop","prep"])if(s[key]&&typeof s[key]==="object")for(const k of Object.keys(s[key]))if(/^[a-z0-9]{1,8}$/.test(k)&&s[key][k])o[key][k]=true;
+  o.updatedAt=num(s.updatedAt,0,0,1e15);
+  return o;
+}
+function loadLocal(){try{const s=localStorage.getItem(LS_KEY);return s?JSON.parse(s):null;}catch(e){return null;}}
+function saveLocal(){try{localStorage.setItem(LS_KEY,JSON.stringify(state));}catch(e){}}
+
+let state=normalize(loadLocal());
+const ui={tab:"today",date:today(),menuWeek:null,recTab:"r",shopTab:"b",confirm:null,sheet:false,backupText:null,restoreDraft:""};
+const isFramed=()=>{try{return window.self!==window.top;}catch(e){return true;}};
+const isStandalone=()=>(window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches)||navigator.standalone===true;
+const hasClaude=()=>!!(window.claude&&typeof window.claude.use==="function");
+
+function commit(){state.updatedAt=Date.now();saveLocal();queueCloud();render();}
+function getRec(d){return state.days[d]||{m:[0,0,0,0,0],ex:0,w:0,st:0};}
+function mutRec(d){if(!state.days[d])state.days[d]={m:[0,0,0,0,0],ex:0,w:0,st:0};return state.days[d];}
+
+/* ================= PROGRAM LOGIC ================= */
+function info(date){
+  if(!state.startDate)return null;
+  const n=diffDays(state.startDate,date);
+  if(n<0)return {before:true,n};
+  const inM=n%28;
+  return {before:false,n,month:Math.floor(n/28)+1,dayInMonth:inM+1,week:Math.floor(inM/7),wd:(parse(date).getDay()+6)%7};
+}
+const level=inf=>inf.month>1?3:inf.week;
+function score(date){
+  const r=state.days[date];if(!r)return 0;
+  const inf=info(date);if(!inf||inf.before)return 0;
+  return r.m.reduce((a,b)=>a+b,0)+(r.ex?1:0)+(r.w>=8?1:0)+(r.st>=STEPS[level(inf)]?1:0);
+}
+function streak(){
+  if(!state.startDate)return 0;
+  let d=today();if(score(d)<6)d=addDays(d,-1);
+  let n=0;while(d>=state.startDate&&score(d)>=6&&n<1000){n++;d=addDays(d,-1);}
+  return n;
+}
+function dateFor(w,wd){
+  const ti=info(today());const month=ti&&!ti.before?ti.month:1;
+  const base=addDays(state.startDate,(month-1)*28+w*7);
+  for(let i=0;i<7;i++){const d=addDays(base,i);if((parse(d).getDay()+6)%7===wd)return d;}
+  return base;
+}
+function exercise(wd,lv){
+  const tr=state.lang==="tr",s=L(SETS[lv]),pl=L(PLANK[lv]);
+  const sNote=tr?"5 dk ısınma · hareketler arası 45–60 sn dinlenme · 5 dk soğuma ve esneme":"Pemanasan 5 menit · istirahat 45–60 dtk antar gerakan · pendinginan & peregangan 5 menit";
+  const bNote=tr?"Sadece net oyun süresini say (molalar hariç). Önce 5–10 dk ısın: ayak bileği, diz, omuz. Kort ayakkabısı giy.":"Hitung waktu bermain bersih (tanpa jeda). Pemanasan 5–10 menit: pergelangan kaki, lutut, bahu. Pakai sepatu khusus lapangan.";
+  if(wd===0||wd===4)return {icon:"🏋️‍♀️",title:tr?"Kuvvet antrenmanı A":"Latihan kekuatan A",items:["Squat — "+s,(tr?"Dizden şınav":"Push-up lutut")+" — "+s,"Glute bridge — "+s,(tr?"Su şişesi / dambılla row":"Row (botol air / dumbel)")+" — "+s,"Plank — "+pl+" × 3"],note:sNote};
+  if(wd===2)return {icon:"🏋️‍♀️",title:tr?"Kuvvet antrenmanı B":"Latihan kekuatan B",items:[(tr?"Geriye lunge":"Reverse lunge")+" — "+s,"Romanian deadlift — "+s,(tr?"Omuz press":"Shoulder press")+" — "+s,(tr?"Yan plank":"Side plank")+" — "+pl+(tr?" her taraf":" per sisi"),"Mountain climber — "+s],note:sNote};
+  if(wd===1){const m=["25–30","30–35","30–35","30–35"][lv];return {icon:"🏸",title:"Badminton",items:[tr?m+" dk oyun (tekler veya çiftler)":m+" menit bermain (tunggal atau ganda)"],note:bNote};}
+  if(wd===3){const m=[["25–30 menit","25–30 dk"],["30–35 menit","30–35 dk"],["Tunggal 30–40 menit (interval alami)","Tekler 30–40 dk (doğal interval)"],["Tunggal 30–40 menit (interval alami)","Tekler 30–40 dk (doğal interval)"]][lv];return {icon:"🏸",title:"Badminton",items:[L(m)],note:bNote};}
+  if(wd===5)return {icon:"🏸",title:tr?"Uzun aktivite":"Aktivitas panjang",items:tr?["Çiftler badminton 50–60 dk","veya tekler 40–45 dk","veya tempolu yürüyüş 45–60 dk"]:["Badminton ganda 50–60 menit","atau tunggal 40–45 menit","atau jalan kaki cepat 45–60 menit"],note:bNote};
+  return {icon:"🧘‍♀️",title:tr?"Dinlenme & esneme":"Istirahat & peregangan",items:tr?["15 dk hafif esneme veya yoga"]:["Peregangan ringan atau yoga 15 menit"],note:tr?"Kasların dinlenirken güçlenir. Adım hedefini yine de tamamlamaya çalış.":"Otot menjadi kuat saat istirahat. Tetap usahakan target langkah."};
+}
+
+/* ================= VIEWS ================= */
+function checkRow(act,attrs,on,slot,txt,fk,extraCls){
+  return `<label class="check-row${extraCls?" "+extraCls:""}${on?" done":""}"><input type="checkbox" data-act="${act}" ${attrs} data-fk="${fk}"${on?" checked":""}><span class="box" aria-hidden="true"></span><span class="ci">${slot?`<span class="slot">${slot}</span>`:""}${txt?`<span class="txt">${esc(txt)}</span>`:""}</span></label>`;
+}
+function hero(date,inf){
+  const isT=date===today();
+  let h=`<section class="card hero"><div class="hero-nav"><button class="icon-btn" data-act="prev" data-fk="prev" aria-label="${t("prevDay")}">‹</button><div class="hero-date"><span>${esc(fmtDate(date))}</span>${isT?`<span class="pill">${t("today")}</span>`:`<button class="pill link" data-act="gotoday">${t("backToday")}</button>`}</div><button class="icon-btn" data-act="next" data-fk="next" aria-label="${t("nextDay")}">›</button></div>`;
+  if(!inf.before){
+    const sc=score(date),pct=Math.round(sc/8*100),C=2*Math.PI*34,st=streak();
+    h+=`<div class="hero-main"><div><div class="big">${t("day")} ${inf.dayInMonth}<small> / 28</small></div><div class="wk">${esc(L(WEEKS[inf.week].t))}</div>${inf.month>1?`<div class="muted sm">${esc(t("month2",{m:inf.month}))}</div>`:""}${st>0?`<div class="streak">${esc(t("streak",{n:st}))}</div>`:""}</div>
+    <div class="ring" role="img" aria-label="${t("progress")}: ${sc}/8"><svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="34" class="ring-bg"/><circle cx="40" cy="40" r="34" class="ring-fg" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${(C*(1-sc/8)).toFixed(1)}"${sc===0?' style="opacity:0"':""}/></svg><div class="ring-t"><b>${pct}%</b><span>${sc}/8 ${t("tasks")}</span></div></div></div>`;
+  }
+  return h+"</section>";
+}
+function viewWelcome(){
+  const p=state.profile;
+  return `<section class="card welcome"><div class="emoji" aria-hidden="true">🍃</div><h2>${t("welcome")}</h2><p>${t("welcomeTxt")}</p>
+  <label class="field">${t("startDate")}<input type="date" id="startInput" value="${today()}"></label>
+  <button class="btn block" data-act="start">${t("startBtn")}</button>
+  <p class="muted sm">${esc(t("profileLine",{h:fmtNum(p.height),s:fmtNum(p.startWeight),g:fmtNum(p.target)}))}</p>
+  <p class="note">${t("realistic")}</p></section>`;
+}
+function viewToday(){
+  if(!state.startDate)return viewWelcome();
+  const date=ui.date,inf=info(date);
+  if(inf.before)return hero(date,inf)+`<section class="card"><h2>${t("beforeTitle")}</h2><p>${esc(t("beforeTxt",{d:fmtDate(state.startDate),n:-inf.n}))}</p><button class="btn block" data-act="startToday">${t("startToday")}</button></section>`;
+  const day=WEEKS[inf.week].d[inf.wd],r=getRec(date),lv=level(inf);
+  let h=hero(date,inf);
+  if(inf.n%7===0)h+=`<section class="card banner"><div style="flex:1"><b>${t("weighDay")}</b><p>${t("weighTxt")}</p></div><a class="btn sm" href="#weight">${t("goWeigh")} →</a></section>`;
+  const items=[day[0],SN[day[3]],day[1],SN[day[4]],day[2]];
+  h+=`<section class="card"><div class="card-h"><h2>${t("meals")}</h2><span class="muted sm">${t("kcalDay")}</span></div>`;
+  if(inf.wd===6)h+=`<p class="flexnote">⭐ <b>${t("flex")}</b> · ${t("flexTxt")}</p>`;
+  items.forEach((it,i)=>{h+=checkRow("meal",`data-i="${i}"`,!!r.m[i],`${SLOTS[state.lang][i]} <em>${t("approx")}${KCAL[i]} ${t("kcal")}</em>`,L(it),"meal"+i);});
+  h+=`</section>`;
+  const ex=exercise(inf.wd,lv);
+  h+=`<section class="card"><div class="card-h"><h2>${t("exercise")}</h2><span class="ex-icon" aria-hidden="true">${ex.icon}</span></div><h3>${esc(ex.title)}</h3><ul class="ex">${ex.items.map(x=>`<li>${esc(x)}</li>`).join("")}</ul><p class="muted sm">${esc(ex.note)}</p>${checkRow("ex","",!!r.ex,"",t("markDone"),"ex","nostrike")}</section>`;
+  const w=r.w;
+  h+=`<section class="card"><div class="card-h"><h2>${t("water")}</h2><span class="muted sm">${esc(t("waterTxt",{n:w,l:fmtNum(w*0.25,2)}))}</span></div><div class="water">${Array.from({length:10},(_,i)=>`<button class="glass${i<w?" on":""}" data-act="water" data-n="${i+1}" data-fk="w${i}" aria-label="${i+1}" aria-pressed="${i<w}"></button>`).join("")}</div><p class="muted sm">${t("waterGoal")}</p></section>`;
+  const tg=STEPS[lv],pct=Math.min(100,Math.round(r.st/tg*100));
+  h+=`<section class="card"><div class="card-h"><h2>${t("steps")}</h2><span class="muted sm">${esc(t("stepsTarget",{n:fmtNum(tg,0)}))}</span></div><input type="number" inputmode="numeric" min="0" max="100000" step="100" class="steps-in" data-act="steps" data-fk="steps" aria-label="${t("steps")}" placeholder="${t("stepsPh")}" value="${r.st||""}"><div class="meter" aria-hidden="true"><span style="width:${pct}%"></span></div></section>`;
+  h+=`<section class="card"><h3>${t("tip")}</h3><p>${esc(L(TIPS[inf.n%TIPS.length]))}</p></section>`;
+  return h;
+}
+function viewMenu(){
+  const ti=state.startDate?info(today()):null;
+  const cur=ti&&!ti.before?ti.week:0;
+  const w=ui.menuWeek==null?cur:ui.menuWeek;
+  let h=`<h2 class="page-h">${t("menuTitle")}</h2><div class="chips" role="tablist">${WEEKS.map((x,i)=>`<button class="chip${i===w?" on":""}" role="tab" aria-selected="${i===w}" data-act="week" data-w="${i}" data-fk="wk${i}">${esc(t("weekChip",{n:i+1}))}</button>`).join("")}</div><p class="wk-title">${esc(L(WEEKS[w].t))}</p>`;
+  WEEKS[w].d.forEach((d,wd)=>{
+    const dt=state.startDate?dateFor(w,wd):null,isT=dt===today();
+    h+=`<section class="card mday${isT?" is-today":""}"><div class="card-h"><h3>${WDN[state.lang][wd]}${wd===6?` <span class="badge-s">⭐ ${t("flex")}</span>`:""}</h3>${isT?`<span class="pill">${t("isToday")}</span>`:""}${dt?`<button class="link" data-act="openday" data-date="${dt}">${t("openDay")}</button>`:""}</div>
+    <dl class="mlist"><dt>${t("bShort")}</dt><dd>${esc(L(d[0]))}</dd><dt>${t("lShort")}</dt><dd>${esc(L(d[1]))}</dd><dt>${t("dShort")}</dt><dd>${esc(L(d[2]))}</dd><dt>${t("sShort")}</dt><dd>${esc(L(SN[d[3]]))} · ${esc(L(SN[d[4]]))}</dd></dl></section>`;
+  });
+  return h;
+}
+
+let chartPts=[];
+function chartSVG(){
+  const p=state.profile,start=state.startDate;
+  const pts=state.weights.map(w=>({date:w.date,kg:w.kg}));
+  if(start&&!pts.some(x=>x.date<=start))pts.unshift({date:start,kg:p.startWeight,base:true});
+  chartPts=[];
+  if(!pts.length)return `<p class="muted">${t("noData")}</p>`;
+  const d0=pts[0].date;
+  const ends=[pts[pts.length-1].date];if(start)ends.push(addDays(start,27));
+  const dEnd=ends.sort().pop();
+  const span=Math.max(diffDays(d0,dEnd),7);
+  const W=340,H=210,ml=30,mr=12,mt=16,mb=26,iw=W-ml-mr,ih=H-mt-mb;
+  const vals=pts.map(x=>x.kg).concat([p.target]);
+  const yMin=Math.floor(Math.min(...vals))-1,yMax=Math.ceil(Math.max(...vals,p.startWeight))+1;
+  const X=d=>ml+diffDays(d0,d)/span*iw,Y=v=>mt+(yMax-v)/(yMax-yMin)*ih;
+  const stepY=(yMax-yMin)>10?2:1;
+  let g="";
+  for(let v=yMin;v<=yMax;v+=stepY)g+=`<line x1="${ml}" x2="${W-mr}" y1="${Y(v).toFixed(1)}" y2="${Y(v).toFixed(1)}" class="grid"/><text x="${ml-6}" y="${(Y(v)+3.5).toFixed(1)}" class="ax" text-anchor="end">${v}</text>`;
+  let band="";
+  if(start&&start<=dEnd){
+    const up=[],lo=[],sw=p.startWeight,days=diffDays(start,dEnd);
+    for(let i=0;i<=days;i++){const d=addDays(start,i),x=X(d).toFixed(1);up.push(x+","+Y(Math.max(p.target,sw-0.5*i/7)).toFixed(1));lo.push(x+","+Y(Math.max(p.target,sw-i/7)).toFixed(1));}
+    band=`<polygon class="band" points="${up.concat(lo.reverse()).join(" ")}"/>`;
+  }
+  const ty=Y(p.target);
+  const target=`<line x1="${ml}" x2="${W-mr}" y1="${ty.toFixed(1)}" y2="${ty.toFixed(1)}" class="tline"/><text x="${W-mr}" y="${(ty+13).toFixed(1)}" class="tlabel" text-anchor="end">${esc(t("target"))} ${fmtNum(p.target)} kg</text>`;
+  const path=pts.map((q,i)=>(i?"L":"M")+X(q.date).toFixed(1)+" "+Y(q.kg).toFixed(1)).join(" ");
+  const dots=pts.map(q=>`<circle cx="${X(q.date).toFixed(1)}" cy="${Y(q.kg).toFixed(1)}" r="4.5" class="dot"/>`).join("");
+  const xl=`<text x="${ml}" y="${H-6}" class="ax">${esc(fmtShort(d0))}</text><text x="${W-mr}" y="${H-6}" class="ax" text-anchor="end">${esc(fmtShort(dEnd))}</text>`;
+  chartPts=pts.map(q=>({x:X(q.date),y:Y(q.kg),date:q.date,kg:q.kg,base:!!q.base}));
+  const last=pts[pts.length-1];
+  return `<div class="chart-wrap"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(t("chartTitle"))}: ${esc(fmtNum(last.kg))} kg">${g}${band}${target}<path d="${path}" class="sline"/>${dots}<line class="xh" x1="0" x2="0" y1="${mt}" y2="${H-mb}" style="opacity:0"/><circle class="hdot" r="6" cx="-20" cy="-20" style="opacity:0"/>${xl}<rect class="hit" x="${ml}" y="0" width="${iw}" height="${H-mb}"/></svg><div class="tt" id="tt"></div></div>
+  <div class="keys"><span><i class="k-line"></i>${t("series")}</span><span><i class="k-band"></i>${t("healthyBand")}</span><span><i class="k-target"></i>${t("target")} ${fmtNum(p.target)} kg</span></div>`;
+}
+function bindChart(){
+  const svg=document.querySelector(".chart-wrap svg");if(!svg||!chartPts.length)return;
+  const tt=$("#tt"),xh=svg.querySelector(".xh"),hd=svg.querySelector(".hdot"),hit=svg.querySelector(".hit"),wrap=svg.parentNode;
+  const move=ev=>{
+    const r=svg.getBoundingClientRect(),sx=340/r.width,mx=(ev.clientX-r.left)*sx;
+    let best=null,bd=1e9;chartPts.forEach(q=>{const d=Math.abs(q.x-mx);if(d<bd){bd=d;best=q;}});
+    if(!best)return;
+    xh.setAttribute("x1",best.x);xh.setAttribute("x2",best.x);xh.style.opacity=1;
+    hd.setAttribute("cx",best.x);hd.setAttribute("cy",best.y);hd.style.opacity=1;
+    tt.innerHTML=`<b>${esc(fmtNum(best.kg))} kg</b><br>${esc(fmtShort(best.date))}${best.base?" · "+esc(t("startW")):""}`;
+    const left=clamp(best.x/sx,48,wrap.clientWidth-48);
+    tt.style.left=left+"px";tt.style.top=(best.y/sx)+"px";tt.style.opacity=1;
+  };
+  const leave=()=>{xh.style.opacity=0;hd.style.opacity=0;tt.style.opacity=0;};
+  hit.addEventListener("pointermove",move);hit.addEventListener("pointerdown",move);hit.addEventListener("pointerleave",leave);
+}
+function viewWeight(){
+  const p=state.profile,ws=state.weights;
+  const cur=ws.length?ws[ws.length-1].kg:p.startWeight;
+  const ch=Math.round((cur-p.startWeight)*10)/10,left=Math.max(0,Math.round((cur-p.target)*10)/10);
+  const pct=p.startWeight>p.target?Math.round(clamp((p.startWeight-cur)/(p.startWeight-p.target),0,1)*100):0;
+  const bmi=cur/Math.pow(p.height/100,2),cat=bmi<18.5?0:bmi<25?1:bmi<30?2:3;
+  const sign=v=>v>0?"+":v<0?"−":"";
+  let h=`<h2 class="page-h">${t("weightTitle")}</h2>
+  <section class="card"><div class="w-hero"><div><div class="muted sm">${t("nowW")}</div><div class="hero-num">${fmtNum(cur)}<small> kg</small></div></div><div class="bmi"><span class="muted">${t("bmi")}</span><b>${fmtNum(bmi)}</b><span>${t("bmiCat")[cat]}</span></div></div>
+  <div class="meter lg" role="img" aria-label="${esc(t("toTarget",{p:pct,g:fmtNum(p.target)}))}"><span style="width:${pct}%"></span></div><div class="muted sm">${esc(t("toTarget",{p:pct,g:fmtNum(p.target)}))}</div>
+  <div class="stats"><div><span>${t("startW")}</span><b>${fmtNum(p.startWeight)} kg</b></div><div><span>${t("change")}</span><b>${sign(ch)}${fmtNum(Math.abs(ch))} kg</b></div><div><span>${t("left")}</span><b>${fmtNum(left)} kg</b></div></div></section>
+  <section class="card"><h2>${t("chartTitle")}</h2>${chartSVG()}</section>
+  <section class="card"><h2>${t("addWeight")}</h2><div class="form-row"><label class="field">${t("date")}<input type="date" id="wDate" value="${today()}" max="${today()}"></label><label class="field">${t("kg")}<input type="text" inputmode="decimal" id="wKg" placeholder="${esc(fmtNum(cur))}" autocomplete="off"></label><label class="field">${t("waist")} <i>${t("optional")}</i><input type="text" inputmode="decimal" id="wWaist" autocomplete="off"></label></div><p class="err" id="wErr" hidden></p><button class="btn block" data-act="saveWeight">${t("save")}</button></section>`;
+  if(ws.length){
+    h+=`<section class="card"><h2>${t("history")}</h2><table class="hist"><thead><tr><th>${t("date")}</th><th>kg</th><th>Δ</th><th>${t("waistShort")}</th><th><span style="position:absolute;left:-9999px">${t("del")}</span></th></tr></thead><tbody>`;
+    const rev=[...ws].reverse();
+    rev.forEach((w,i)=>{const prev=rev[i+1]?rev[i+1].kg:p.startWeight,d=Math.round((w.kg-prev)*10)/10,key="delw:"+w.date;
+      h+=`<tr><td>${esc(fmtShort(w.date))}</td><td><b>${fmtNum(w.kg)}</b></td><td class="${d<0?"down":d>0?"up":""}">${d===0?"±0":sign(d)+fmtNum(Math.abs(d))}</td><td>${w.waist?fmtNum(w.waist):"–"}</td><td style="text-align:right"><button class="link danger" data-act="delw" data-date="${w.date}">${ui.confirm===key?t("sure"):t("del")}</button></td></tr>`;});
+    h+=`</tbody></table></section>`;
+  }
+  return h+`<p class="note">${t("realistic")}</p>`;
+}
+function viewRecipes(){
+  const tab=ui.recTab;
+  let h=`<div class="chips" role="tablist"><button class="chip${tab==="r"?" on":""}" role="tab" aria-selected="${tab==="r"}" data-act="rectab" data-v="r">👩‍🍳 ${t("recipesTab")}</button><button class="chip${tab==="t"?" on":""}" role="tab" aria-selected="${tab==="t"}" data-act="rectab" data-v="t">💡 ${t("tipsTab")}</button></div>`;
+  if(tab==="r"){
+    RECIPES.forEach(r=>{h+=`<details class="card recipe"><summary><span class="r-emoji" aria-hidden="true">${r.e}</span><span><b>${esc(L(r.t))}</b><small>${esc(L(r.m))}</small></span></summary><div class="body"><h4>${t("ingredients")}</h4><ul>${r.i.map(x=>`<li>${esc(L(x))}</li>`).join("")}</ul><h4>${t("how")}</h4><ol>${r.s.map(x=>`<li>${esc(L(x))}</li>`).join("")}</ol></div></details>`;});
+  }else{
+    const list=a=>`<ul>${a.map(x=>`<li>${esc(L(x))}</li>`).join("")}</ul>`;
+    h+=`<section class="card tips"><h2>🍚 ${t("portion")}</h2>${list(PORTION)}</section>
+    <section class="card tips"><h2>👩‍🍳 ${t("cooking")}</h2>${list(COOK)}</section>
+    <section class="card tips"><h2>☕ ${t("drinks")}</h2><div class="two"><div><h3>${t("ok")}</h3>${list(DRINK_OK)}</div><div><h3>${t("avoid")}</h3>${list(DRINK_NO)}</div></div></section>
+    <section class="card tips"><h2>🚫 ${t("limit")}</h2>${list(LIMIT)}</section>
+    <section class="card tips"><h2>🏪 ${t("eatOut")}</h2><ul>${EATOUT.map(x=>`<li><b>${esc(x[0])}:</b> ${esc(state.lang==="tr"?x[2]:x[1])}</li>`).join("")}</ul></section>
+    <section class="card tips"><h2>${t("health")}</h2><p>${esc(t("healthTxt"))}</p></section>`;
+  }
+  return h;
+}
+function viewShop(){
+  const tab=ui.shopTab;
+  let h=`<div class="chips" role="tablist"><button class="chip${tab==="b"?" on":""}" role="tab" aria-selected="${tab==="b"}" data-act="shoptab" data-v="b">🛒 ${t("shopTab")}</button><button class="chip${tab==="p"?" on":""}" role="tab" aria-selected="${tab==="p"}" data-act="shoptab" data-v="p">📦 ${t("prepTab")}</button></div>`;
+  if(tab==="b"){
+    const total=SHOP.reduce((a,c)=>a+c.i.length,0),done=Object.keys(state.shop).length;
+    h+=`<div class="row-between"><span class="muted sm"><b>${done}</b> / ${total}</span><button class="link danger" data-act="resetShop">${ui.confirm==="resetShop"?t("resetSure"):t("reset")}</button></div>`;
+    SHOP.forEach(c=>{h+=`<section class="card"><h2>${esc(L(c.t))}</h2>${c.i.map((it,j)=>{const k=c.k+j;return checkRow("shop",`data-k="${k}"`,!!state.shop[k],"",L(it),"s"+k,"compact");}).join("")}</section>`;});
+  }else{
+    const done=Object.keys(state.prep).length;
+    h+=`<div class="row-between"><span class="muted sm"><b>${done}</b> / ${PREP.length}</span><button class="link danger" data-act="resetPrep">${ui.confirm==="resetPrep"?t("resetSure"):t("reset")}</button></div>`;
+    h+=`<section class="card"><h2>${t("prepTitle")}</h2>${PREP.map((it,j)=>{const k="m"+j;return checkRow("prep",`data-k="${k}"`,!!state.prep[k],"",L(it),"p"+k,"compact");}).join("")}</section>`;
+  }
+  return h;
+}
+
+/* ================= RENDER ================= */
+function syncText(){return t("sync_"+cloud.status);}
+function renderChrome(){
+  document.documentElement.lang=state.lang==="tr"?"tr":"id";
+  const lb=$("#langBtn");lb.textContent=state.lang==="tr"?"ID":"TR";lb.setAttribute("aria-label",t("switchTo"));lb.title=t("switchTo");
+  const sb=$("#settingsBtn");sb.setAttribute("aria-label",t("settingsLbl"));sb.title=t("settingsLbl");
+  $("#syncBadge").textContent=syncText();
+  $("#tabs").innerHTML=TABS.map(([k,ic])=>`<a href="#${k}" class="${ui.tab===k?"on":""}"${ui.tab===k?' aria-current="page"':""}><span class="ic" aria-hidden="true">${ic}</span>${t("t_"+k)}</a>`).join("");
+}
+function render(){
+  const ae=document.activeElement,fk=ae&&ae.dataset?ae.dataset.fk:null;
+  renderChrome();
+  const v={today:viewToday,menu:viewMenu,weight:viewWeight,recipes:viewRecipes,shopping:viewShop}[ui.tab]||viewToday;
+  $("#view").innerHTML=v();
+  if(ui.tab==="weight")bindChart();
+  if(ui.sheet)renderSheet();else $("#sheet").hidden=true;
+  if(fk){const el=document.querySelector(`[data-fk="${fk}"]`);if(el)el.focus({preventScroll:true});}
+}
+function renderSheet(){
+  const p=state.profile,el=$("#sheet");el.hidden=false;
+  el.querySelector(".sheet").innerHTML=`<div class="sheet-h"><h2 id="sheetTitle">${t("settings")}</h2><button class="icon-btn" data-act="closeSheet" data-fk="close" aria-label="${t("close")}">✕</button></div>
+  <label class="field">${t("language")}<select data-act="set-lang"><option value="id"${state.lang==="id"?" selected":""}>Bahasa Indonesia</option><option value="tr"${state.lang==="tr"?" selected":""}>Türkçe</option></select></label>
+  <label class="field">${t("startDate")}<input type="date" data-act="set-start" value="${state.startDate||""}"></label>
+  <div class="form-row"><label class="field">${t("height")}<input type="text" inputmode="decimal" data-act="set-height" value="${p.height}"></label><label class="field">${t("startWeight")}<input type="text" inputmode="decimal" data-act="set-sw" value="${p.startWeight}"></label><label class="field">${t("targetWeight")}<input type="text" inputmode="decimal" data-act="set-target" value="${p.target}"></label></div>
+  <h3>${t("syncTitle")}</h3><p class="sync-line" id="syncLine">${syncText()}</p><p class="muted sm">${hasClaude()?t("syncNote"):t("localNote")}</p>
+  ${!isFramed()&&!isStandalone()?`<div class="note"><b>${t("installTitle")}</b><br>${esc(t("installTxt"))}</div>`:""}
+  <h3>${t("backupTitle")}</h3><p class="muted sm">${t("backupTxt")}</p>
+  <div class="btn-row"><button class="btn ghost" data-act="copyBackup">📋 ${t("copyBackup")}</button>${!isFramed()?`<button class="btn ghost" data-act="downloadBackup">⬇️ ${t("downloadBackup")}</button>`:""}</div>
+  ${ui.backupText?`<p class="muted sm">${t("copyFail")}</p><textarea class="bk" id="bkOut" readonly rows="4">${esc(ui.backupText)}</textarea>`:""}
+  <label class="field">${t("restoreLbl")}<textarea class="bk" id="bkIn" rows="3" placeholder="${t("restorePh")}">${esc(ui.restoreDraft||"")}</textarea></label>
+  <label class="field">${t("orFile")}<input type="file" accept=".json,application/json,text/plain" data-act="restoreFile"></label>
+  <button class="btn block" data-act="restoreBackup">${ui.confirm==="restore"?t("restoreSure"):t("restoreBtn")}</button>
+  <h3>&nbsp;</h3>
+  <button class="btn danger block" data-act="resetAll">${ui.confirm==="resetAll"?t("resetAllSure"):t("resetAll")}</button>`;
+}
+function toast(msg){const el=$("#toast");el.textContent=msg;el.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("show"),1800);}
+function twoTap(key,fn){
+  if(ui.confirm===key){ui.confirm=null;fn();return;}
+  ui.confirm=key;render();
+  setTimeout(()=>{if(ui.confirm===key){ui.confirm=null;render();}},3500);
+}
+
+/* ================= EVENTS ================= */
+document.addEventListener("click",e=>{
+  if(e.target.id==="sheet"){ui.sheet=false;ui.confirm=null;ui.backupText=null;render();return;}
+  const el=e.target.closest("[data-act]");if(!el)return;
+  const a=el.dataset.act;
+  switch(a){
+    case "water":{const r=mutRec(ui.date),n=+el.dataset.n;r.w=r.w===n?n-1:n;commit();break;}
+    case "prev":ui.date=addDays(ui.date,-1);render();break;
+    case "next":ui.date=addDays(ui.date,1);render();break;
+    case "gotoday":ui.date=today();render();break;
+    case "start":{const v=$("#startInput").value;state.startDate=isYmd(v)?v:today();ui.date=today();commit();break;}
+    case "startToday":state.startDate=today();ui.date=today();commit();break;
+    case "week":ui.menuWeek=+el.dataset.w;render();break;
+    case "openday":ui.date=el.dataset.date;if(location.hash==="#today"){render();window.scrollTo(0,0);}else location.hash="today";break;
+    case "rectab":ui.recTab=el.dataset.v;render();break;
+    case "shoptab":ui.shopTab=el.dataset.v;ui.confirm=null;render();break;
+    case "saveWeight":{
+      const d=$("#wDate").value,kg=parseDec($("#wKg").value),wa=parseDec($("#wWaist").value),err=$("#wErr");
+      if(!isYmd(d)||!(kg>=30&&kg<=250)){err.textContent=t("invalidKg");err.hidden=false;return;}
+      state.weights=state.weights.filter(x=>x.date!==d);
+      state.weights.push({date:d,kg:Math.round(kg*10)/10,waist:wa>=40&&wa<=200?Math.round(wa*10)/10:null});
+      state.weights.sort((x,y)=>x.date<y.date?-1:x.date>y.date?1:0);
+      commit();toast(t("saved"));break;}
+    case "delw":{const d=el.dataset.date;twoTap("delw:"+d,()=>{state.weights=state.weights.filter(x=>x.date!==d);commit();});break;}
+    case "resetShop":twoTap("resetShop",()=>{state.shop={};commit();});break;
+    case "resetPrep":twoTap("resetPrep",()=>{state.prep={};commit();});break;
+    case "resetAll":twoTap("resetAll",()=>{const lang=state.lang;state=defaultState();state.lang=lang;ui.sheet=false;ui.date=today();commit();});break;
+    case "settings":ui.sheet=true;ui.confirm=null;render();const c=document.querySelector('[data-fk="close"]');if(c)c.focus();break;
+    case "closeSheet":ui.sheet=false;ui.confirm=null;ui.backupText=null;render();$("#settingsBtn").focus();break;
+    case "lang":state.lang=state.lang==="tr"?"id":"tr";commit();break;
+    case "copyBackup":{
+      const json=JSON.stringify(state);
+      const fail=()=>{ui.backupText=json;renderSheet();const o=$("#bkOut");if(o){o.focus();o.select();}};
+      try{navigator.clipboard.writeText(json).then(()=>{ui.backupText=null;renderSheet();toast(t("copied"));},fail);}catch(err){fail();}
+      break;}
+    case "downloadBackup":{
+      try{const blob=new Blob([JSON.stringify(state,null,1)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="diet-nusantara-"+today()+".json";document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},1500);}catch(err){}
+      break;}
+    case "restoreBackup":{
+      const box=$("#bkIn"),txt=(box?box.value:"").trim();ui.restoreDraft=txt;
+      let parsed=null;try{parsed=JSON.parse(txt);}catch(err){}
+      if(!parsed||typeof parsed!=="object"||parsed.v!==1){ui.confirm=null;toast(t("badBackup"));break;}
+      twoTap("restore",()=>{const lang=state.lang;state=normalize(parsed);if(!parsed.lang)state.lang=lang;ui.restoreDraft="";ui.sheet=false;ui.date=today();commit();toast(t("restored"));});
+      break;}
+  }
+});
+document.addEventListener("input",e=>{if(e.target&&e.target.id==="bkIn")ui.restoreDraft=e.target.value;});
+document.addEventListener("change",e=>{
+  const el=e.target,a=el.dataset&&el.dataset.act;if(!a)return;
+  const p=state.profile;
+  switch(a){
+    case "meal":mutRec(ui.date).m[+el.dataset.i]=el.checked?1:0;commit();break;
+    case "ex":mutRec(ui.date).ex=el.checked?1:0;commit();break;
+    case "steps":mutRec(ui.date).st=Math.round(num(el.value,0,0,100000));commit();break;
+    case "shop":case "prep":{const k=el.dataset.k;if(el.checked)state[a][k]=true;else delete state[a][k];commit();break;}
+    case "set-lang":state.lang=el.value==="tr"?"tr":"id";commit();break;
+    case "set-start":if(isYmd(el.value)){state.startDate=el.value;ui.date=today();commit();}break;
+    case "set-height":p.height=num(parseDec(el.value),p.height,100,230);commit();break;
+    case "set-sw":p.startWeight=num(parseDec(el.value),p.startWeight,30,250);commit();break;
+    case "set-target":p.target=num(parseDec(el.value),p.target,30,250);commit();break;
+    case "restoreFile":{const f=el.files&&el.files[0];if(f&&f.size<2e6)f.text().then(txt=>{ui.restoreDraft=txt;ui.confirm=null;renderSheet();}).catch(()=>{});break;}
+  }
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"&&ui.sheet){ui.sheet=false;ui.confirm=null;ui.backupText=null;render();$("#settingsBtn").focus();}
+  if(e.key==="Enter"&&e.target&&e.target.dataset&&e.target.dataset.act==="steps")e.target.blur();
+});
+function readHash(){const h=location.hash.replace("#","");ui.tab=TABS.some(x=>x[0]===h)?h:"today";}
+window.addEventListener("hashchange",()=>{readHash();ui.confirm=null;render();window.scrollTo(0,0);});
+
+/* ================= CLOUD SYNC (claude.ai db, per-person private) ================= */
+const cloud={status:"local",ref:null,dirty:false,writing:false,timer:null,reconciled:false};
+function setSync(s){cloud.status=s;const b=$("#syncBadge");if(b)b.textContent=syncText();const l=$("#syncLine");if(l)l.textContent=syncText();}
+function queueCloud(){if(!cloud.ref)return;cloud.dirty=true;clearTimeout(cloud.timer);cloud.timer=setTimeout(flush,700);}
+async function flush(){
+  if(!cloud.ref||cloud.writing||!cloud.dirty)return;
+  cloud.writing=true;let tries=0;
+  while(cloud.dirty){
+    cloud.dirty=false;setSync("saving");
+    try{await cloud.ref.set(JSON.parse(JSON.stringify(state)));setSync("synced");tries=0;}
+    catch(e){if(e&&e.code==="unavailable"&&tries<1){tries++;cloud.dirty=true;await sleep(800+Math.random()*1200);}else{setSync("error");break;}}
+  }
+  cloud.writing=false;
+}
+async function initCloud(){
+  if(!window.claude||typeof window.claude.use!=="function")return;
+  setSync("connecting");
+  try{
+    const db=await window.claude.use("db"),user=await window.claude.use("user");
+    if(!db||!user){setSync("local");return;}
+    const uid=await user.id();
+    if(!uid){setSync("local");return;}
+    const ref=db.doc("data/users/"+uid+"/state");
+    const timer=setTimeout(()=>{if(!cloud.reconciled)setSync("offline");},10000);
+    ref.onSnapshot(snap=>{
+      if(snap.metadata&&snap.metadata.hasPendingWrites)return;
+      const remote=snap.exists?snap.data():null;
+      const rU=remote?Number(remote.updatedAt)||0:0;
+      if(remote&&rU>(state.updatedAt||0)){state=normalize(JSON.parse(JSON.stringify(remote)));saveLocal();render();}
+      if(!(snap.metadata&&snap.metadata.fromCache)&&!cloud.reconciled){
+        cloud.reconciled=true;clearTimeout(timer);cloud.ref=ref;
+        if((state.updatedAt||0)>rU){cloud.dirty=true;flush();}else setSync("synced");
+      }
+    },()=>{clearTimeout(timer);setSync("error");});
+  }catch(e){setSync("local");}
+}
+
+/* ================= START ================= */
+readHash();
+render();
+initCloud();
+// Offline support when hosted on its own (not inside claude.ai's frame)
+if("serviceWorker" in navigator&&!isFramed()&&(location.protocol==="https:"||location.hostname==="localhost"||location.hostname==="127.0.0.1")){
+  window.addEventListener("load",()=>{navigator.serviceWorker.register("sw.js").catch(()=>{});});
+}
+})();
+</script>
+</body>
+</html>
